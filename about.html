@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>关于 · 听风 | 文明切片</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&family=Noto+Sans+SC:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .hero-small {
+            padding: 100px 32px 40px;
+            text-align: center;
+        }
+
+        .hero-small h1 {
+            font-family: var(--font-serif);
+            font-size: 36px;
+            font-weight: 700;
+            margin-bottom: 12px;
+            background: linear-gradient(135deg, var(--text-primary) 0%, var(--accent) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .about-container {
+            max-width: 640px;
+            margin: 0 auto;
+            padding: 40px 32px 80px;
+        }
+
+        .about-block {
+            margin-bottom: 60px;
+        }
+
+        .about-block:last-child {
+            margin-bottom: 0;
+        }
+
+        .about-label {
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--accent);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .about-label::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: linear-gradient(90deg, var(--border), transparent);
+        }
+
+        .about-text {
+            font-size: 16px;
+            line-height: 2;
+            color: var(--text-primary);
+        }
+
+        .about-text p {
+            margin-bottom: 20px;
+        }
+
+        .about-text p:last-child {
+            margin-bottom: 0;
+        }
+
+        .about-quote {
+            font-family: var(--font-serif);
+            font-size: 18px;
+            font-style: italic;
+            color: var(--text-secondary);
+            padding: 24px 0;
+            margin: 32px 0;
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+            text-align: center;
+            line-height: 1.8;
+        }
+
+        .about-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .about-list li {
+            padding: 12px 0;
+            padding-left: 24px;
+            position: relative;
+            font-size: 15px;
+            line-height: 1.7;
+            color: var(--text-secondary);
+            border-bottom: 1px dashed var(--border);
+        }
+
+        .about-list li:last-child {
+            border-bottom: none;
+        }
+
+        .about-list li::before {
+            content: '—';
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+        }
+
+        .about-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 24px;
+        }
+
+        .about-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 20px;
+            background: var(--bg-alt);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 14px;
+            transition: all 0.2s ease;
+        }
+
+        .about-link:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+            transform: translateY(-2px);
+        }
+
+        .about-link-icon {
+            font-size: 16px;
+        }
+
+        .about-signature {
+            text-align: right;
+            font-family: var(--font-serif);
+            font-size: 20px;
+            color: var(--accent);
+            margin-top: 40px;
+        }
+
+        @media (max-width: 640px) {
+            .hero-small h1 {
+                font-size: 28px;
+            }
+
+            .about-container {
+                padding: 32px 24px 60px;
+            }
+
+            .about-text {
+                font-size: 15px;
+            }
+
+            .about-quote {
+                font-size: 16px;
+            }
+
+            .about-links {
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="nav">
+        <div class="nav-container">
+            <a href="index.html" class="logo">文明切片</a>
+            <div class="nav-links">
+                <a href="index.html#articles" class="nav-link">文章</a>
+                <a href="index.html#news" class="nav-link">资讯</a>
+                <a href="ai-hub.html" class="nav-link">AI 启动台</a>
+                <a href="about.html" class="nav-link" style="color: var(--accent);">关于</a>
+            </div>
+        </div>
+    </nav>
+
+    <header class="hero-small">
+        <h1>关于听风</h1>
+    </header>
+
+    <main class="about-container">
+        <div class="about-block">
+            <div class="about-label">我是谁</div>
+            <div class="about-text">
+                <p>自由写作者，独立观察者。</p>
+                <p>在信息过载的时代，试图保持清醒；在算法推送的洪流中，坚持独立判断。</p>
+                <p>相信技术改变世界，但更相信人应该是技术的主人，而不是相反。</p>
+            </div>
+        </div>
+
+        <div class="about-quote">
+            "我们听到的一切都是一个观点，不是事实。<br>我们看见的一切都是一个视角，不是真相。"
+        </div>
+
+        <div class="about-block">
+            <div class="about-label">这里写什么</div>
+            <ul class="about-list">
+                <li>对科技和 AI 趋势的独立观察，不追热点，不贩卖焦虑</li>
+                <li>每周值得关注的资讯筛选，附我的解读和判断</li>
+                <li>历史与现实的对照，从过去看今天，从今天想未来</li>
+                <li>思考方法和认知升级，如何在信息爆炸中保持清醒</li>
+                <li>偶尔的生活观察和人文随笔</li>
+            </ul>
+        </div>
+
+        <div class="about-block">
+            <div class="about-label">更新节奏</div>
+            <div class="about-text">
+                <p><strong>每周切片</strong>：每周日晚发布，筛选当周最值得关注的 5-7 条信息，附我的解读。</p>
+                <p><strong>风向评论</strong>：每月 2-3 篇深度长文，不追热点，只求把一个问题想透。</p>
+                <p>不保证更新频率，但保证每一篇都是认真写的。</p>
+            </div>
+        </div>
+
+        <div class="about-block">
+            <div class="about-label">找到我</div>
+            <div class="about-links">
+                <a href="#" class="about-link">
+                    <span class="about-link-icon">📧</span>
+                    邮件订阅
+                </a>
+                <a href="#" class="about-link">
+                    <span class="about-link-icon">🐦</span>
+                    Twitter
+                </a>
+                <a href="#" class="about-link">
+                    <span class="about-link-icon">💬</span>
+                    微信公众号
+                </a>
+                <a href="#" class="about-link">
+                    <span class="about-link-icon">📺</span>
+                    即刻
+                </a>
+            </div>
+        </div>
+
+        <div class="about-signature">
+            — 听风
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p class="footer-text">© 2026 文明切片 · 听风</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

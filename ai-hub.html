@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI 启动台</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;700;800&family=Noto+Sans+SC:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --bg: #0a0a0f;
+    --bg2: #111118;
+    --bg3: #16161f;
+    --border: rgba(255,255,255,0.07);
+    --border2: rgba(255,255,255,0.13);
+    --text: #f0f0f5;
+    --text2: #8888a0;
+    --text3: #55556a;
+    --accent: #7c6fff;
+    --accent2: #a78bfa;
+    --green: #34d399;
+    --amber: #fbbf24;
+    --pink: #f472b6;
+    --blue: #60a5fa;
+  }
+  html { background: var(--bg); color: var(--text); font-family: 'Noto Sans SC', sans-serif; min-height: 100vh; }
+  body {
+    background: var(--bg);
+    background-image:
+      radial-gradient(ellipse 80% 40% at 50% -5%, rgba(124,111,255,0.13) 0%, transparent 60%),
+      radial-gradient(ellipse 35% 25% at 85% 85%, rgba(52,211,153,0.05) 0%, transparent 50%);
+    min-height: 100vh;
+  }
+  .container { max-width: 960px; margin: 0 auto; padding: 2.5rem 1.5rem 5rem; }
+
+  /* Header */
+  .header { margin-bottom: 1.8rem; animation: fadeUp 0.5s ease both; }
+  .eyebrow { font-family: 'Syne', sans-serif; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent2); margin-bottom: 10px; display: flex; align-items: center; gap: 8px; }
+  .eyebrow::before { content: ''; display: block; width: 20px; height: 1px; background: var(--accent2); }
+  .title { font-family: 'Syne', sans-serif; font-size: clamp(1.8rem, 4.5vw, 2.8rem); font-weight: 800; line-height: 1.1; letter-spacing: -0.02em; }
+  .title span { color: var(--accent2); }
+  .subtitle { margin-top: 8px; font-size: 14px; color: var(--text2); font-weight: 300; }
+
+  /* Stats */
+  .stats { display: flex; gap: 1.5rem; margin-bottom: 1.8rem; animation: fadeUp 0.5s 0.05s ease both; align-items: center; }
+  .stat-num { font-family: 'Syne', sans-serif; font-size: 20px; font-weight: 800; color: var(--text); }
+  .stat-label { font-size: 11px; color: var(--text3); margin-top: 1px; }
+  .stat-divider { width: 0.5px; height: 28px; background: var(--border); }
+
+  /* Toolbar */
+  .toolbar { display: flex; gap: 10px; margin-bottom: 2rem; animation: fadeUp 0.5s 0.08s ease both; flex-wrap: wrap; align-items: center; }
+  .search-wrap { position: relative; flex: 1; min-width: 180px; }
+  .search-wrap svg { position: absolute; left: 11px; top: 50%; transform: translateY(-50%); width: 13px; height: 13px; stroke: var(--text3); fill: none; stroke-width: 2.2; pointer-events: none; }
+  .search { width: 100%; background: var(--bg3); border: 0.5px solid var(--border2); border-radius: 10px; padding: 9px 12px 9px 32px; font-size: 14px; color: var(--text); font-family: 'Noto Sans SC', sans-serif; outline: none; transition: border-color 0.2s, box-shadow 0.2s; }
+  .search:focus { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(124,111,255,0.1); }
+  .search::placeholder { color: var(--text3); }
+
+  .filter-tabs { display: flex; gap: 6px; flex-wrap: wrap; }
+  .tab { padding: 7px 13px; border: 0.5px solid var(--border); border-radius: 8px; background: transparent; color: var(--text3); font-size: 12px; cursor: pointer; font-family: 'Noto Sans SC', sans-serif; transition: all 0.15s; white-space: nowrap; }
+  .tab:hover { border-color: var(--border2); color: var(--text2); }
+  .tab.active { background: rgba(124,111,255,0.1); border-color: rgba(124,111,255,0.4); color: var(--accent2); }
+
+  /* Section */
+  .section { margin-bottom: 2rem; animation: fadeUp 0.5s 0.12s ease both; }
+  .section-head { display: flex; align-items: center; gap: 9px; margin-bottom: 11px; }
+  .sec-dot { width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; }
+  .section-label { font-family: 'Syne', sans-serif; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text2); font-weight: 500; }
+  .section-line { flex: 1; height: 0.5px; background: var(--border); }
+  .section-count { font-size: 11px; color: var(--text3); font-family: 'Syne', sans-serif; }
+
+  /* Grid */
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(138px, 1fr)); gap: 8px; }
+
+  /* Card */
+  .card { background: var(--bg3); border: 0.5px solid var(--border); border-radius: 13px; padding: 13px 12px; cursor: pointer; text-decoration: none; display: flex; flex-direction: column; gap: 8px; transition: border-color 0.18s, transform 0.15s, background 0.18s; }
+  .card:hover { border-color: var(--border2); transform: translateY(-2px); background: #1b1b26; }
+  .card:active { transform: scale(0.97); }
+  .card-icon { font-size: 22px; line-height: 1; }
+  .card-name { font-family: 'Syne', sans-serif; font-size: 13px; font-weight: 700; color: var(--text); }
+  .card-desc { font-size: 11px; color: var(--text3); line-height: 1.4; margin-top: -3px; }
+  .badge { display: inline-block; font-size: 10px; font-weight: 500; padding: 2px 8px; border-radius: 20px; }
+  .badge-free  { background: rgba(52,211,153,0.1);  color: var(--green); border: 0.5px solid rgba(52,211,153,0.2); }
+  .badge-limit { background: rgba(251,191,36,0.08); color: var(--amber); border: 0.5px solid rgba(251,191,36,0.18); }
+
+  /* Actions */
+  .actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 2.5rem; animation: fadeUp 0.5s 0.2s ease both; }
+  .action-btn { display: flex; align-items: center; gap: 7px; padding: 8px 15px; border: 0.5px solid var(--border2); border-radius: 9px; background: var(--bg3); color: var(--text2); font-size: 13px; cursor: pointer; font-family: 'Noto Sans SC', sans-serif; transition: all 0.18s; }
+  .action-btn:hover { background: var(--bg2); border-color: rgba(124,111,255,0.35); color: var(--text); }
+  .action-btn svg { width: 14px; height: 14px; flex-shrink: 0; stroke: currentColor; fill: none; stroke-width: 2; }
+
+  .tip { display: flex; align-items: center; gap: 8px; font-size: 12px; color: var(--text3); margin-top: 1.2rem; animation: fadeUp 0.5s 0.25s ease both; }
+  .tip-dot { width: 4px; height: 4px; border-radius: 50%; background: var(--accent); flex-shrink: 0; }
+  .empty { text-align: center; padding: 3rem 1rem; color: var(--text3); font-size: 14px; display: none; }
+
+  .back-nav { position: sticky; top: 0; z-index: 100; background: var(--bg); padding: 12px 0; margin-bottom: 1.2rem; border-bottom: 0.5px solid var(--border); backdrop-filter: blur(10px); }
+  .back-link { display: inline-flex; align-items: center; gap: 8px; color: var(--text3); text-decoration: none; font-size: 13px; transition: color 0.2s; }
+  .back-link:hover { color: var(--accent2); }
+  .back-link svg { width: 14px; height: 14px; stroke: currentColor; fill: none; stroke-width: 2; }
+
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
+  @media (max-width: 520px) { .grid { grid-template-columns: repeat(2, 1fr); } .stats { gap: 1rem; } }
+</style>
+</head>
+<body>
+<div class="container">
+  <nav class="back-nav">
+    <a href="index.html" class="back-link">
+      <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+      返回文明切片
+    </a>
+  </nav>
+  <header class="header">
+    <div class="eyebrow">AI Hub</div>
+    <h1 class="title">你的 <span>AI</span> 启动台</h1>
+    <p class="subtitle">对话 · 图像 · 视频 · 3D · 模型平台，一站直达</p>
+  </header>
+
+  <div class="stats">
+    <div class="stat"><div class="stat-num" id="statTotal">0</div><div class="stat-label">个平台</div></div>
+    <div class="stat-divider"></div>
+    <div class="stat"><div class="stat-num" id="statFree">0</div><div class="stat-label">免费可用</div></div>
+    <div class="stat-divider"></div>
+    <div class="stat"><div class="stat-num">5</div><div class="stat-label">大类</div></div>
+  </div>
+
+  <div class="toolbar">
+    <div class="search-wrap">
+      <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><line x1="16.5" y1="16.5" x2="21" y2="21"/></svg>
+      <input class="search" type="text" id="searchInput" placeholder="搜索平台名称…" oninput="filterCards(this.value)" autocomplete="off" />
+    </div>
+    <div class="filter-tabs">
+      <button class="tab active" onclick="switchCat('all',this)">全部</button>
+      <button class="tab" onclick="switchCat('chat',this)">💬 对话</button>
+      <button class="tab" onclick="switchCat('image',this)">🖼 图像</button>
+      <button class="tab" onclick="switchCat('video',this)">🎬 视频</button>
+      <button class="tab" onclick="switchCat('3d',this)">🧊 3D</button>
+      <button class="tab" onclick="switchCat('platform',this)">🔧 模型平台</button>
+    </div>
+  </div>
+
+  <div id="sections-root"></div>
+  <div class="empty" id="emptyMsg">没有找到匹配的平台</div>
+
+  <div class="actions">
+    <button class="action-btn" onclick="openVisible()">
+      <svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+      打开当前筛选
+    </button>
+    <button class="action-btn" onclick="openCat('chat')">
+      <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+      打开全部对话
+    </button>
+    <button class="action-btn" onclick="openCat('image')">
+      <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+      打开全部图像
+    </button>
+    <button class="action-btn" onclick="openFree()">
+      <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+      仅免费平台
+    </button>
+  </div>
+
+  <p class="tip"><span class="tip-dot"></span>点击卡片在新标签页打开 · 各平台保留独立登录状态和免费额度</p>
+</div>
+
+<script>
+const SECTIONS = [
+  {
+    id:'chat-intl', cat:'chat', label:'💬 对话模型 · 国际', dot:'#a78bfa',
+    items:[
+      {icon:'🤖',name:'ChatGPT',    desc:'OpenAI · GPT-4o',      url:'https://chatgpt.com',                          free:true,  tags:'openai gpt'},
+      {icon:'🌊',name:'Claude',     desc:'Anthropic · Sonnet',   url:'https://claude.ai',                            free:true,  tags:'anthropic'},
+      {icon:'✨',name:'Gemini',     desc:'Google · 2.0 Flash',   url:'https://gemini.google.com',                    free:true,  tags:'google'},
+      {icon:'🪟',name:'Copilot',    desc:'Microsoft · GPT-4o',   url:'https://copilot.microsoft.com',                free:true,  tags:'microsoft bing'},
+      {icon:'🦙',name:'Meta AI',    desc:'Meta · Llama 4',       url:'https://meta.ai',                              free:true,  tags:'meta llama'},
+      {icon:'🌀',name:'Grok',       desc:'xAI · Grok 3',         url:'https://grok.com',                             free:true,  tags:'xai elon'},
+      {icon:'🔍',name:'Perplexity', desc:'搜索增强 AI',           url:'https://www.perplexity.ai',                    free:false, tags:'search'},
+      {icon:'💎',name:'AI Studio',  desc:'Google · Gemma & Gemini',url:'https://aistudio.google.com',               free:true,  tags:'google gemma aistudio'},
+    ]
+  },
+  {
+    id:'chat-cn', cat:'chat', label:'💬 对话模型 · 国内', dot:'#a78bfa',
+    items:[
+      {icon:'🫘',name:'豆包',       desc:'字节跳动',              url:'https://www.doubao.com',                       free:true,  tags:'字节 bytedance'},
+      {icon:'🐋',name:'DeepSeek',  desc:'深度求索 · R1',         url:'https://chat.deepseek.com',                    free:true,  tags:'深度求索'},
+      {icon:'🌙',name:'Kimi',       desc:'月之暗面',              url:'https://kimi.moonshot.cn',                     free:true,  tags:'moonshot'},
+      {icon:'🔮',name:'通义千问',  desc:'阿里云 · Qwen',         url:'https://tongyi.aliyun.com',                    free:true,  tags:'阿里 qwen'},
+      {icon:'🖌️',name:'文心一言', desc:'百度 · ERNIE',          url:'https://yiyan.baidu.com',                      free:true,  tags:'百度 ernie'},
+      {icon:'🐧',name:'腾讯混元',  desc:'腾讯',                  url:'https://hunyuan.tencent.com',                  free:true,  tags:'腾讯'},
+      {icon:'🐚',name:'海螺 AI',   desc:'MiniMax',               url:'https://hailuoai.com',                         free:true,  tags:'minimax'},
+      {icon:'⚡',name:'讯飞星火',  desc:'科大讯飞',              url:'https://xinghuo.xfyun.cn',                     free:false, tags:'讯飞'},
+      {icon:'🌿',name:'智谱清言',  desc:'智谱 · GLM-4',          url:'https://chatglm.cn',                           free:true,  tags:'智谱 glm'},
+      {icon:'🔯',name:'百川智能',  desc:'Baichuan AI',           url:'https://www.baichuan-ai.com',                  free:true,  tags:'百川'},
+    ]
+  },
+  {
+    id:'image', cat:'image', label:'🖼 AI 图像生成', dot:'#f472b6',
+    items:[
+      {icon:'🎨',name:'Midjourney', desc:'顶级图像质量',          url:'https://www.midjourney.com',                   free:false, tags:'mj'},
+      {icon:'🦋',name:'Adobe Firefly',desc:'商用安全 · Adobe',   url:'https://firefly.adobe.com',                    free:false, tags:'adobe'},
+      {icon:'🌸',name:'Leonardo AI',desc:'游戏资产生成',          url:'https://app.leonardo.ai',                      free:true,  tags:'game'},
+      {icon:'🎭',name:'Flux',       desc:'Black Forest Labs',    url:'https://flux1.ai',                             free:true,  tags:'bfl'},
+      {icon:'🐦',name:'Ideogram',  desc:'文字排版最强',          url:'https://ideogram.ai',                          free:true,  tags:'text'},
+      {icon:'🎪',name:'NightCafe', desc:'多模型风格',            url:'https://creator.nightcafe.studio',             free:true,  tags:''},
+      {icon:'🖼',name:'Stable Diffusion',desc:'Stability AI · 开源',url:'https://stability.ai',                     free:false, tags:'sd stability'},
+      {icon:'🪄',name:'即梦',       desc:'字节跳动 · 图像',       url:'https://jimeng.jianying.com',                  free:true,  tags:'字节'},
+      {icon:'🌊',name:'海艺 AI',   desc:'多风格 · 国内',         url:'https://www.seaart.ai',                        free:true,  tags:'seaart'},
+      {icon:'🌈',name:'通义万象',  desc:'阿里 · 图像生成',       url:'https://tongyi.aliyun.com/wanxiang',           free:true,  tags:'阿里 wanxiang'},
+      {icon:'🎯',name:'Canva AI',  desc:'设计 + AI 生图',        url:'https://www.canva.com',                        free:true,  tags:'canva design'},
+      {icon:'✏️',name:'触手 AI',  desc:'二次元风格',             url:'https://www.chuanshuai.com',                   free:true,  tags:'二次元'},
+    ]
+  },
+  {
+    id:'video', cat:'video', label:'🎬 AI 视频生成', dot:'#2dd4bf',
+    items:[
+      {icon:'🎬',name:'Sora',       desc:'OpenAI · 视频生成',     url:'https://sora.com',                             free:false, tags:'openai'},
+      {icon:'🎥',name:'Runway',     desc:'Gen-3 Alpha Turbo',    url:'https://runwayml.com',                         free:false, tags:'gen3'},
+      {icon:'🌊',name:'Kling AI',  desc:'快手 · 可灵',           url:'https://klingai.com',                          free:true,  tags:'可灵 快手'},
+      {icon:'🎞',name:'Pika',       desc:'Pika Labs · 2.2',      url:'https://pika.art',                             free:true,  tags:''},
+      {icon:'🎦',name:'海螺视频',  desc:'MiniMax · 视频',        url:'https://hailuoai.video',                       free:true,  tags:'minimax hailuo'},
+      {icon:'🔵',name:'即梦视频',  desc:'字节跳动 · 视频',       url:'https://jimeng.jianying.com',                  free:true,  tags:'字节'},
+      {icon:'🎯',name:'Vidu',       desc:'生数科技',              url:'https://www.vidu.cn',                          free:true,  tags:''},
+      {icon:'🟣',name:'Wan AI',    desc:'阿里 · 万象视频',       url:'https://wan.video',                            free:true,  tags:'阿里'},
+      {icon:'🎠',name:'Dream Machine',desc:'Luma AI · 视频',     url:'https://lumalabs.ai/dream-machine',            free:true,  tags:'luma'},
+      {icon:'🎭',name:'PixVerse',  desc:'多风格视频生成',         url:'https://pixverse.ai',                          free:true,  tags:''},
+      {icon:'🟤',name:'Hailuo Intl',desc:'MiniMax · 国际版',     url:'https://hailuoai.video',                       free:true,  tags:'minimax'},
+      {icon:'🎡',name:'Udio',       desc:'AI 音乐视频',           url:'https://www.udio.com',                         free:true,  tags:'music audio'},
+    ]
+  },
+  {
+    id:'3d', cat:'3d', label:'🧊 AI 3D 生成', dot:'#60a5fa',
+    items:[
+      {icon:'🧊',name:'Meshy',      desc:'3D 网格 · 纹理生成',    url:'https://www.meshy.ai',                         free:true,  tags:'mesh texture'},
+      {icon:'🌐',name:'Tripo AI',  desc:'快速 3D 模型生成',      url:'https://www.tripo3d.ai',                       free:true,  tags:''},
+      {icon:'🔷',name:'Spline AI', desc:'3D 设计 + AI',          url:'https://spline.design',                        free:true,  tags:'design'},
+      {icon:'🔮',name:'Luma Genie',desc:'文字/图片转 3D',        url:'https://lumalabs.ai/genie',                    free:true,  tags:'luma text-to-3d'},
+      {icon:'🧩',name:'Rodin',     desc:'字节 · 高质量 3D 角色', url:'https://hyper3d.ai',                           free:true,  tags:'字节 character'},
+      {icon:'🏗',name:'CSM AI',    desc:'单图转 3D 重建',         url:'https://www.csm.ai',                           free:true,  tags:'reconstruction'},
+      {icon:'🎲',name:'InstantMesh',desc:'开源 · 单图转3D',      url:'https://huggingface.co/spaces/TencentARC/InstantMesh',free:true,tags:'hf open source'},
+      {icon:'🌀',name:'Alpha3D',   desc:'产品级 3D 生成',         url:'https://www.alpha3d.io',                       free:false, tags:'product'},
+      {icon:'🔬',name:'Kaedim',    desc:'概念图转 3D',            url:'https://www.kaedim3d.com',                     free:false, tags:'concept'},
+      {icon:'🧲',name:'Shap-E',    desc:'OpenAI · 开源 3D',      url:'https://github.com/openai/shap-e',             free:true,  tags:'openai open source'},
+    ]
+  },
+  {
+    id:'platform', cat:'platform', label:'🔧 模型平台 · 开发者', dot:'#fb7185',
+    items:[
+      {icon:'🤗',name:'Hugging Face',desc:'最大模型 / 数据社区',  url:'https://huggingface.co',                       free:true,  tags:'hf hub'},
+      {icon:'🧬',name:'Civitai',    desc:'Stable Diffusion 模型', url:'https://civitai.com',                          free:true,  tags:'sd community'},
+      {icon:'🔱',name:'Replicate',  desc:'API 调用各类模型',      url:'https://replicate.com',                        free:false, tags:'api'},
+      {icon:'🌩',name:'Together AI',desc:'开源模型推理 API',       url:'https://www.together.ai',                      free:true,  tags:'inference api'},
+      {icon:'⚙️',name:'Groq',       desc:'极速推理 · 免费 API',  url:'https://console.groq.com',                     free:true,  tags:'fast llm api'},
+      {icon:'🏛',name:'OpenRouter', desc:'聚合多家模型 API',       url:'https://openrouter.ai',                        free:true,  tags:'router api'},
+      {icon:'🔬',name:'Ollama',     desc:'本地运行大模型',         url:'https://ollama.com',                           free:true,  tags:'local'},
+      {icon:'🧪',name:'LM Studio',  desc:'本地模型桌面端',         url:'https://lmstudio.ai',                          free:true,  tags:'local desktop'},
+      {icon:'🌊',name:'ModelScope', desc:'魔搭 · 阿里模型社区',   url:'https://www.modelscope.cn',                    free:true,  tags:'魔搭 阿里'},
+      {icon:'🔭',name:'Vertex AI',  desc:'Google Cloud · 企业级', url:'https://cloud.google.com/vertex-ai',           free:false, tags:'google cloud enterprise'},
+      {icon:'🛰',name:'AWS Bedrock',desc:'亚马逊 · 多模型 API',   url:'https://aws.amazon.com/bedrock',               free:false, tags:'aws amazon'},
+      {icon:'🏢',name:'Azure OpenAI',desc:'微软 · 企业 API',      url:'https://azure.microsoft.com/en-us/products/ai-services/openai-service',free:false,tags:'microsoft azure'},
+    ]
+  },
+];
+
+let currentCat = 'all';
+
+function buildStats() {
+  let total = 0, free = 0;
+  SECTIONS.forEach(s => s.items.forEach(i => { total++; if (i.free) free++; }));
+  document.getElementById('statTotal').textContent = total;
+  document.getElementById('statFree').textContent = free;
+}
+
+function renderCard(item, cat) {
+  const a = document.createElement('a');
+  a.href = item.url; a.target = '_blank'; a.rel = 'noopener noreferrer';
+  a.className = 'card';
+  a.dataset.cat = cat; a.dataset.free = item.free;
+  a.dataset.tags = (item.name + ' ' + item.desc + ' ' + item.tags).toLowerCase();
+  a.innerHTML = `<div class="card-icon">${item.icon}</div><div><div class="card-name">${item.name}</div><div class="card-desc">${item.desc}</div></div><span class="badge ${item.free ? 'badge-free' : 'badge-limit'}">${item.free ? '免费' : '付费'}</span>`;
+  return a;
+}
+
+function buildSections() {
+  const root = document.getElementById('sections-root');
+  root.innerHTML = '';
+  SECTIONS.forEach(sec => {
+    const el = document.createElement('section');
+    el.className = 'section'; el.dataset.secId = sec.id; el.dataset.cat = sec.cat;
+    el.innerHTML = `<div class="section-head"><span class="sec-dot" style="background:${sec.dot}"></span><span class="section-label">${sec.label}</span><div class="section-line"></div><span class="section-count" id="cnt-${sec.id}">${sec.items.length}</span></div><div class="grid" id="grid-${sec.id}"></div>`;
+    root.appendChild(el);
+    const grid = document.getElementById('grid-' + sec.id);
+    sec.items.forEach(item => grid.appendChild(renderCard(item, sec.cat)));
+  });
+}
+
+function applyFilter(cat, query) {
+  const q = (query || '').toLowerCase().trim();
+  let totalVisible = 0;
+  SECTIONS.forEach(sec => {
+    const secEl = document.querySelector(`[data-sec-id="${sec.id}"]`);
+    let visible = 0;
+    secEl.querySelectorAll('.card').forEach(card => {
+      const show = (cat === 'all' || card.dataset.cat === cat) && (!q || card.dataset.tags.includes(q));
+      card.style.display = show ? '' : 'none';
+      if (show) { visible++; totalVisible++; }
+    });
+    secEl.style.display = visible > 0 ? '' : 'none';
+    const cnt = document.getElementById('cnt-' + sec.id);
+    if (cnt) cnt.textContent = visible;
+  });
+  document.getElementById('emptyMsg').style.display = totalVisible === 0 ? 'block' : 'none';
+}
+
+function switchCat(cat, btn) {
+  currentCat = cat;
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  btn.classList.add('active');
+  applyFilter(cat, document.getElementById('searchInput').value);
+}
+
+function filterCards(val) { applyFilter(currentCat, val); }
+function openVisible() { document.querySelectorAll('.card').forEach(c => { if (c.style.display !== 'none') window.open(c.href, '_blank'); }); }
+function openCat(cat) { document.querySelectorAll(`.card[data-cat="${cat}"]`).forEach(c => window.open(c.href, '_blank')); }
+function openFree() { document.querySelectorAll('.card[data-free="true"]').forEach(c => { if (c.style.display !== 'none') window.open(c.href, '_blank'); }); }
+
+buildStats();
+buildSections();
+</script>
+</body>
+</html>

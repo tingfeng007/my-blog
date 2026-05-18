@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>文章模板 | 文明切片</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&family=Noto+Sans+SC:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* 阅读进度条 */
+        .progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--accent), var(--accent-light));
+            z-index: 1000;
+            transition: width 0.1s ease;
+        }
+
+        .article-hero {
+            padding: 140px 32px 60px;
+            text-align: center;
+            position: relative;
+        }
+
+        .article-hero::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--accent), transparent);
+        }
+
+        .article-category {
+            display: inline-block;
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 24px;
+            padding: 6px 14px;
+            background: rgba(184, 134, 11, 0.08);
+            border-radius: 20px;
+        }
+
+        .article-title {
+            font-family: var(--font-serif);
+            font-size: clamp(28px, 5vw, 42px);
+            font-weight: 700;
+            line-height: 1.4;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, var(--text-primary) 0%, var(--accent) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .article-subtitle {
+            font-size: 17px;
+            color: var(--text-secondary);
+            font-weight: 300;
+            max-width: 640px;
+            margin: 0 auto 32px;
+            line-height: 1.7;
+        }
+
+        .article-meta {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            font-size: 13px;
+            color: var(--text-muted);
+            flex-wrap: wrap;
+        }
+
+        .article-meta-item {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .article-meta-dot {
+            width: 4px;
+            height: 4px;
+            background: var(--accent);
+            border-radius: 50%;
+            opacity: 0.4;
+        }
+
+        /* 正文区域 */
+        .article-content {
+            max-width: 720px;
+            margin: 0 auto;
+            padding: 60px 32px 80px;
+        }
+
+        .article-body {
+            font-size: 17px;
+            line-height: 2;
+            color: var(--text-primary);
+            font-family: var(--font-sans);
+        }
+
+        /* 首字下沉 */
+        .article-body > p:first-child::first-letter {
+            font-family: var(--font-serif);
+            font-size: 3.5em;
+            font-weight: 700;
+            float: left;
+            line-height: 1;
+            margin-right: 12px;
+            margin-top: 6px;
+            color: var(--accent);
+        }
+
+        .article-body p {
+            margin-bottom: 28px;
+            text-align: justify;
+        }
+
+        .article-body h2 {
+            font-family: var(--font-serif);
+            font-size: 26px;
+            font-weight: 600;
+            margin: 56px 0 24px;
+            padding-bottom: 12px;
+            border-bottom: 2px solid var(--accent);
+            display: inline-block;
+        }
+
+        .article-body h3 {
+            font-family: var(--font-serif);
+            font-size: 20px;
+            font-weight: 600;
+            margin: 40px 0 16px;
+            color: var(--text-primary);
+        }
+
+        .article-body blockquote {
+            border-left: 3px solid var(--accent);
+            padding: 28px 28px 28px 36px;
+            margin: 40px 0;
+            color: var(--text-secondary);
+            font-style: italic;
+            background: linear-gradient(90deg, rgba(184, 134, 11, 0.06), transparent);
+            font-size: 16px;
+            line-height: 1.9;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .article-body blockquote p:last-child {
+            margin-bottom: 0;
+        }
+
+        .article-body strong {
+            color: var(--accent);
+            font-weight: 600;
+        }
+
+        .article-body ul, .article-body ol {
+            margin: 24px 0;
+            padding-left: 28px;
+        }
+
+        .article-body li {
+            margin-bottom: 12px;
+            line-height: 1.8;
+        }
+
+        /* 优雅的分隔线 */
+        .article-divider {
+            text-align: center;
+            margin: 48px 0;
+            color: var(--text-muted);
+            font-size: 22px;
+            letter-spacing: 12px;
+        }
+
+        /* 文章底部作者信息 */
+        .article-footer {
+            margin-top: 80px;
+            padding-top: 40px;
+            border-top: 1px solid var(--border);
+        }
+
+        .article-author-card {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            padding: 28px;
+            background: var(--bg-alt);
+            border-radius: 12px;
+            margin-bottom: 32px;
+        }
+
+        .article-author-avatar {
+            width: 64px;
+            height: 64px;
+            background: linear-gradient(135deg, var(--accent), var(--accent-light));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-family: var(--font-serif);
+            font-size: 28px;
+            font-weight: 600;
+            flex-shrink: 0;
+        }
+
+        .article-author-info h4 {
+            font-family: var(--font-serif);
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 6px;
+        }
+
+        .article-author-info p {
+            font-size: 14px;
+            color: var(--text-secondary);
+            margin: 0;
+        }
+
+        .article-share {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin-top: 24px;
+        }
+
+        .article-share-btn {
+            padding: 10px 20px;
+            background: transparent;
+            border: 1px solid var(--border);
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 13px;
+            border-radius: 20px;
+            transition: all 0.2s ease;
+        }
+
+        .article-share-btn:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+
+        /* 返回顶部按钮 */
+        .back-to-top {
+            position: fixed;
+            bottom: 32px;
+            right: 32px;
+            width: 44px;
+            height: 44px;
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(20px);
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            z-index: 100;
+        }
+
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .back-to-top:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+
+        .back-to-top::after {
+            content: '↑';
+            font-size: 16px;
+            color: var(--text-muted);
+        }
+
+        .back-to-top:hover::after {
+            color: var(--accent);
+        }
+
+        @media (max-width: 768px) {
+            .article-hero {
+                padding: 110px 24px 40px;
+            }
+
+            .article-content {
+                padding: 40px 24px 60px;
+            }
+
+            .article-body {
+                font-size: 16px;
+            }
+
+            .article-author-card {
+                flex-direction: column;
+                text-align: center;
+                padding: 24px;
+            }
+
+            .back-to-top {
+                bottom: 20px;
+                right: 20px;
+                width: 40px;
+                height: 40px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="progress-bar" id="progressBar"></div>
+
+    <nav class="nav">
+        <div class="nav-container">
+            <a href="index.html" class="logo">文明切片</a>
+            <div class="nav-links">
+                <a href="index.html#articles" class="nav-link">文章</a>
+                <a href="index.html#news" class="nav-link">资讯</a>
+                <a href="ai-hub.html" class="nav-link">AI 启动台</a>
+                <a href="about.html" class="nav-link">关于</a>
+            </div>
+        </div>
+    </nav>
+
+    <header class="article-hero">
+        <div class="article-category">风向评论</div>
+        <h1 class="article-title">文章标题</h1>
+        <p class="article-subtitle">这是文章的副标题，用一两句话概括文章的核心观点或核心问题</p>
+        <div class="article-meta">
+            <span class="article-meta-item">📅 2026年5月18日</span>
+            <span class="article-meta-dot"></span>
+            <span class="article-meta-item">⏱️ 阅读约 15 分钟</span>
+            <span class="article-meta-dot"></span>
+            <span class="article-meta-item">👁️ 本文约 6000 字</span>
+        </div>
+    </header>
+
+    <main class="article-content">
+        <article class="article-body">
+            <p>这是正文的第一段。首字会有下沉效果，这是排版的一个小细节，能让文章看起来更有杂志感。好的排版本身就是阅读体验的一部分。</p>
+
+            <p>正常的段落样式，行高设为 2，中文阅读会比较舒服。文字两端对齐，看起来更整齐。段落之间留足够的间距，不会挤在一起。</p>
+
+            <h2>二级标题</h2>
+            <p>二级标题下面有一个短的下划线，和标题文字一样长，这是一个比较精致的细节，比一条贯穿的横线更有气质。</p>
+
+            <div class="article-divider">···</div>
+
+            <p>上面那个是优雅的分隔线，用三个点居中，比 hr 标签好看多了。在文章分大段的时候用，既有分隔感，又不会太生硬。</p>
+
+            <blockquote>
+                这是引用块的样式。左边有一条金色的竖线，背景是非常淡的金色渐变。引用的文字用斜体，颜色稍浅。当你需要引用别人的话或者强调一段话时，可以用这个样式。
+            </blockquote>
+
+            <h3>三级标题</h3>
+            <p>三级标题比正文稍大，字重也更粗，但是没有下划线，因为层级比二级标题低。这样可以形成清晰的视觉层级。</p>
+
+            <ul>
+                <li>这是一个无序列表项</li>
+                <li>第二个列表项，可能会比较长，换行的时候要注意缩进对齐</li>
+                <li>第三个列表项</li>
+            </ul>
+
+            <p>列表和正文之间有合适的间距，不会和上下文混在一起。</p>
+
+            <ol>
+                <li>有序列表第一项</li>
+                <li>有序列表第二项</li>
+                <li>有序列表第三项</li>
+            </ol>
+
+            <p><strong>加粗的文字会显示为金色</strong>，这比纯黑色更有质感，也能和整体的配色风格保持一致。</p>
+        </article>
+
+        <div class="article-footer">
+            <div class="article-author-card">
+                <div class="article-author-avatar">听</div>
+                <div class="article-author-info">
+                    <h4>听风</h4>
+                    <p>自由写作者，独立观察者。在喧嚣的时代保持清醒。</p>
+                </div>
+            </div>
+
+            <div class="article-share">
+                <a href="#" class="article-share-btn">微信分享</a>
+                <a href="#" class="article-share-btn">Twitter</a>
+                <a href="index.html" class="article-share-btn">返回首页</a>
+            </div>
+        </div>
+    </main>
+
+    <div class="back-to-top" id="backToTop"></div>
+
+    <footer class="footer">
+        <div class="container">
+            <p class="footer-text">© 2026 文明切片 · 听风</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        // 阅读进度条
+        const progressBar = document.getElementById('progressBar');
+        const backToTop = document.getElementById('backToTop');
+
+        window.addEventListener('scroll', () => {
+            const scrollTop = window.scrollY;
+            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const progress = (scrollTop / docHeight) * 100;
+            progressBar.style.width = progress + '%';
+
+            // 返回顶部按钮显示/隐藏
+            if (scrollTop > 500) {
+                backToTop.classList.add('visible');
+            } else {
+                backToTop.classList.remove('visible');
+            }
+        });
+
+        backToTop.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+    </script>
+</body>
+</html>

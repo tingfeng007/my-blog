@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>每周切片 | 文明切片</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&family=Noto+Sans+SC:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .weekly-hero {
+            padding: 120px 32px 60px;
+            text-align: center;
+        }
+
+        .weekly-hero h1 {
+            font-family: var(--font-serif);
+            font-size: 42px;
+            font-weight: 700;
+            margin-bottom: 16px;
+            background: linear-gradient(135deg, var(--text-primary) 0%, var(--accent) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .weekly-hero p {
+            font-size: 16px;
+            color: var(--text-secondary);
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .weekly-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 32px 80px;
+        }
+
+        /* 列表页样式 */
+        .weekly-list-item {
+            padding: 32px 0;
+            border-bottom: 1px solid var(--border);
+            transition: background 0.2s ease;
+            cursor: pointer;
+        }
+
+        .weekly-list-item:hover {
+            background: rgba(184, 134, 11, 0.03);
+            margin: 0 -20px;
+            padding: 32px 20px;
+        }
+
+        .weekly-list-date {
+            font-size: 12px;
+            color: var(--accent);
+            font-weight: 600;
+            letter-spacing: 1px;
+            margin-bottom: 12px;
+        }
+
+        .weekly-list-title {
+            font-family: var(--font-serif);
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+
+        .weekly-list-excerpt {
+            font-size: 15px;
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+
+        .weekly-list-tags {
+            display: flex;
+            gap: 8px;
+            margin-top: 16px;
+            flex-wrap: wrap;
+        }
+
+        .weekly-list-tag {
+            font-size: 11px;
+            padding: 3px 10px;
+            background: var(--bg-alt);
+            border-radius: 12px;
+            color: var(--text-muted);
+        }
+
+        /* 详情页样式 */
+        .weekly-detail {
+            max-width: 720px;
+            margin: 0 auto;
+            padding: 40px 32px 80px;
+        }
+
+        .weekly-header {
+            text-align: center;
+            margin-bottom: 48px;
+        }
+
+        .weekly-number {
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 16px;
+        }
+
+        .weekly-title {
+            font-family: var(--font-serif);
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+
+        .weekly-date {
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+
+        .weekly-section {
+            margin-bottom: 48px;
+        }
+
+        .weekly-section-title {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 24px;
+            font-family: var(--font-serif);
+            font-size: 20px;
+            font-weight: 600;
+        }
+
+        .weekly-section-title::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: linear-gradient(90deg, var(--border), transparent);
+        }
+
+        .weekly-item {
+            padding: 20px 0;
+            border-bottom: 1px dashed var(--border);
+        }
+
+        .weekly-item:last-child {
+            border-bottom: none;
+        }
+
+        .weekly-item-title {
+            font-size: 17px;
+            font-weight: 500;
+            margin-bottom: 8px;
+            color: var(--text-primary);
+        }
+
+        .weekly-item-title a {
+            color: inherit;
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+            transition: border-color 0.2s;
+        }
+
+        .weekly-item-title a:hover {
+            border-bottom-color: var(--accent);
+            color: var(--accent);
+        }
+
+        .weekly-item-desc {
+            font-size: 15px;
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+
+        .weekly-item-source {
+            font-size: 12px;
+            color: var(--text-muted);
+            margin-top: 8px;
+        }
+
+        /* 历史的回响 特殊样式 */
+        .weekly-item.history {
+            background: linear-gradient(135deg, rgba(184, 134, 11, 0.06), transparent);
+            padding: 24px;
+            border-radius: 12px;
+            border-left: 3px solid var(--accent);
+            border-bottom: none;
+            margin: 16px 0;
+        }
+
+        .weekly-item.history .weekly-item-title {
+            color: var(--accent);
+        }
+
+        .weekly-note {
+            background: var(--bg-alt);
+            padding: 24px;
+            border-radius: 12px;
+            margin-top: 32px;
+            font-size: 15px;
+            line-height: 1.7;
+            color: var(--text-secondary);
+        }
+
+        .weekly-note p:last-child {
+            margin-bottom: 0;
+        }
+
+        .weekly-footer {
+            margin-top: 60px;
+            padding-top: 32px;
+            border-top: 1px solid var(--border);
+            text-align: center;
+        }
+
+        .weekly-footer p {
+            font-size: 14px;
+            color: var(--text-muted);
+            margin-bottom: 16px;
+        }
+
+        .weekly-actions {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .weekly-action-btn {
+            padding: 10px 20px;
+            background: transparent;
+            border: 1px solid var(--border);
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 13px;
+            border-radius: 20px;
+            transition: all 0.2s ease;
+        }
+
+        .weekly-action-btn:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+
+        @media (max-width: 768px) {
+            .weekly-hero h1 {
+                font-size: 32px;
+            }
+
+            .weekly-container {
+                padding: 0 24px 60px;
+            }
+
+            .weekly-list-title {
+                font-size: 20px;
+            }
+
+            .weekly-detail {
+                padding: 32px 24px 60px;
+            }
+
+            .weekly-title {
+                font-size: 26px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="nav">
+        <div class="nav-container">
+            <a href="index.html" class="logo">文明切片</a>
+            <div class="nav-links">
+                <a href="index.html#articles" class="nav-link">文章</a>
+                <a href="weekly.html" class="nav-link" style="color: var(--accent);">每周切片</a>
+                <a href="ai-hub.html" class="nav-link">AI 启动台</a>
+                <a href="about.html" class="nav-link">关于</a>
+            </div>
+        </div>
+    </nav>
+
+    <header class="weekly-hero">
+        <h1>每周切片</h1>
+        <p>每周日晚更新，筛选最值得关注的信息，附上我的解读和判断</p>
+    </header>
+
+    <main class="weekly-container">
+        <!-- 这是列表视图，点击进入详情页 -->
+        <div class="weekly-list">
+            <div class="weekly-list-item" onclick="location.href='weekly-001.html'">
+                <div class="weekly-list-date">第 001 期 · 2026年5月18日</div>
+                <h3 class="weekly-list-title">OpenAI 发布 GPT-4o，多模态能力再次突破</h3>
+                <p class="weekly-list-excerpt">本期看点：OpenAI 发布会的真正亮点是什么？普通人如何用好 GPT-4o？以及历史上的今天发生了什么...</p>
+                <div class="weekly-list-tags">
+                    <span class="weekly-list-tag">AI 前沿</span>
+                    <span class="weekly-list-tag">产品观察</span>
+                    <span class="weekly-list-tag">历史的回响</span>
+                </div>
+            </div>
+
+            <div class="weekly-list-item" style="opacity: 0.5;">
+                <div class="weekly-list-date">第 000 期 · 2026年5月11日</div>
+                <h3 class="weekly-list-title">【创刊号】为什么要做「每周切片」</h3>
+                <p class="weekly-list-excerpt">在信息过载的时代，我想做一个信息过滤器。每周筛选 5-7 条真正值得关注的内容，附上我的独立判断...</p>
+                <div class="weekly-list-tags">
+                    <span class="weekly-list-tag">创刊号</span>
+                    <span class="weekly-list-tag">说明</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="weekly-footer">
+            <p>订阅「每周切片」，每周日晚准时送达你的邮箱</p>
+            <div class="weekly-actions">
+                <a href="#" class="weekly-action-btn">📧 邮件订阅</a>
+                <a href="#" class="weekly-action-btn">📱 公众号</a>
+                <a href="index.html" class="weekly-action-btn">返回首页</a>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p class="footer-text">© 2026 文明切片 · 听风</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

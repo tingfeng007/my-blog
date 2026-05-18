@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>每周切片 第001期 | 文明切片</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&family=Noto+Sans+SC:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .weekly-container {
+            max-width: 720px;
+            margin: 0 auto;
+            padding: 0 32px 80px;
+        }
+
+        .weekly-header {
+            text-align: center;
+            padding: 120px 0 48px;
+            position: relative;
+        }
+
+        .weekly-header::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--accent), transparent);
+        }
+
+        .weekly-number {
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 16px;
+        }
+
+        .weekly-title {
+            font-family: var(--font-serif);
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 16px;
+            background: linear-gradient(135deg, var(--text-primary) 0%, var(--accent) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .weekly-date {
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+
+        .weekly-intro {
+            margin: 48px 0;
+            font-size: 16px;
+            line-height: 1.9;
+            color: var(--text-secondary);
+        }
+
+        .weekly-section {
+            margin-bottom: 48px;
+        }
+
+        .weekly-section-title {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 24px;
+            font-family: var(--font-serif);
+            font-size: 20px;
+            font-weight: 600;
+        }
+
+        .weekly-section-title::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: linear-gradient(90deg, var(--border), transparent);
+        }
+
+        .weekly-item {
+            padding: 20px 0;
+            border-bottom: 1px dashed var(--border);
+        }
+
+        .weekly-item:last-child {
+            border-bottom: none;
+        }
+
+        .weekly-item-title {
+            font-size: 17px;
+            font-weight: 500;
+            margin-bottom: 8px;
+            color: var(--text-primary);
+        }
+
+        .weekly-item-title a {
+            color: inherit;
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+            transition: border-color 0.2s;
+        }
+
+        .weekly-item-title a:hover {
+            border-bottom-color: var(--accent);
+            color: var(--accent);
+        }
+
+        .weekly-item-desc {
+            font-size: 15px;
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+
+        .weekly-item-source {
+            font-size: 12px;
+            color: var(--text-muted);
+            margin-top: 8px;
+        }
+
+        /* 历史的回响 特殊样式 */
+        .weekly-item.history {
+            background: linear-gradient(135deg, rgba(184, 134, 11, 0.06), transparent);
+            padding: 24px;
+            border-radius: 12px;
+            border-left: 3px solid var(--accent);
+            border-bottom: none;
+            margin: 16px 0;
+        }
+
+        .weekly-item.history .weekly-item-title {
+            color: var(--accent);
+        }
+
+        .weekly-note {
+            background: var(--bg-alt);
+            padding: 24px;
+            border-radius: 12px;
+            margin-top: 32px;
+            font-size: 15px;
+            line-height: 1.7;
+            color: var(--text-secondary);
+        }
+
+        .weekly-note p:last-child {
+            margin-bottom: 0;
+        }
+
+        .weekly-footer {
+            margin-top: 60px;
+            padding-top: 32px;
+            border-top: 1px solid var(--border);
+            text-align: center;
+        }
+
+        .weekly-footer p {
+            font-size: 14px;
+            color: var(--text-muted);
+            margin-bottom: 16px;
+        }
+
+        .weekly-actions {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .weekly-action-btn {
+            padding: 10px 20px;
+            background: transparent;
+            border: 1px solid var(--border);
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 13px;
+            border-radius: 20px;
+            transition: all 0.2s ease;
+        }
+
+        .weekly-action-btn:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+
+        @media (max-width: 768px) {
+            .weekly-container {
+                padding: 0 24px 60px;
+            }
+
+            .weekly-header {
+                padding: 100px 0 40px;
+            }
+
+            .weekly-title {
+                font-size: 26px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="nav">
+        <div class="nav-container">
+            <a href="index.html" class="logo">文明切片</a>
+            <div class="nav-links">
+                <a href="index.html#articles" class="nav-link">文章</a>
+                <a href="weekly.html" class="nav-link" style="color: var(--accent);">每周切片</a>
+                <a href="ai-hub.html" class="nav-link">AI 启动台</a>
+                <a href="about.html" class="nav-link">关于</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="weekly-container">
+        <header class="weekly-header">
+            <div class="weekly-number">第 001 期</div>
+            <h1 class="weekly-title">OpenAI 发布 GPT-4o，多模态能力再次突破</h1>
+            <div class="weekly-date">2026年5月18日 · 阅读约 8 分钟</div>
+        </header>
+
+        <div class="weekly-intro">
+            <p>大家好，这是「每周切片」的第 001 期。</p>
+            <p>这周最大的新闻无疑是 OpenAI 的 GPT-4o 发布会。但比起那些炫技的功能演示，我更想聊聊这件事背后的趋势，以及对普通人意味着什么。</p>
+            <p>另外，这周还有几个值得关注的产品发布，以及一个历史上的巧合——50年前的这周，发生了一件同样改变世界的事。</p>
+        </div>
+
+        <div class="weekly-section">
+            <div class="weekly-section-title">🔔 必须关注</div>
+
+            <div class="weekly-item">
+                <div class="weekly-item-title">
+                    <a href="#">OpenAI 发布 GPT-4o，实时语音和视频能力正式落地</a>
+                </div>
+                <div class="weekly-item-desc">
+                    这次发布会最让我意外的不是技术有多强，而是 OpenAI 选择了直接免费开放给所有人。
+                    这是一个非常重要的信号：AI 的基础能力已经开始变成公共基础设施，就像水电一样。
+                    未来的竞争不再是「谁有 AI」，而是「谁能用好 AI」。
+                </div>
+                <div class="weekly-item-source">来源：OpenAI 官方发布会</div>
+            </div>
+
+            <div class="weekly-item">
+                <div class="weekly-item-title">
+                    <a href="#">Claude 3 Opus 大幅降价，API 价格腰斩</a>
+                </div>
+                <div class="weekly-item-desc">
+                    Anthropic 紧跟着 OpenAI 降价，这是大模型战争进入下半场的标志。
+                    对于开发者和普通用户来说，这是好事——AI 的使用成本正在以惊人的速度下降。
+                    一年前 GPT-4 刚出来时的价格，现在看起来简直是天价。
+                </div>
+                <div class="weekly-item-source">来源：Anthropic 官方公告</div>
+            </div>
+        </div>
+
+        <div class="weekly-section">
+            <div class="weekly-section-title">💡 值得思考</div>
+
+            <div class="weekly-item">
+                <div class="weekly-item-title">
+                    <a href="#">为什么现在所有科技巨头都在「去 AI 化」？</a>
+                </div>
+                <div class="weekly-item-desc">
+                    一个很有意思的现象：一年前，所有公司都在拼命跟 AI 绑定；
+                    今年，谷歌、微软、苹果的发布会，却都在刻意「去 AI 化」——
+                    他们不再强调「我们有 AI」，而是强调「这个功能能帮你做什么」。
+                    这说明 AI 已经从一个概念，真正变成了产品的底层能力。
+                    就像没人会说「我的手机有一个非常厉害的 CPU」，大家只关心手机好不好用。
+                </div>
+                <div class="weekly-item-source">来源：个人观察</div>
+            </div>
+        </div>
+
+        <div class="weekly-section">
+            <div class="weekly-section-title">🧰 好用工具</div>
+
+            <div class="weekly-item">
+                <div class="weekly-item-title">
+                    <a href="#">Screenpipe：开源的本地屏幕录制和 AI 搜索工具</a>
+                </div>
+                <div class="weekly-item-desc">
+                    这是我本周挖到的最有意思的工具。它会在后台静默录制你的屏幕和声音，
+                    然后你可以用自然语言搜索你看过的任何内容。
+                    比如你可以问：「上周我看的那个关于 React 性能优化的视频里，提到的那个库叫什么来着？」
+                    所有数据都存在本地，不会上传到任何服务器。
+                </div>
+                <div class="weekly-item-source">来源：GitHub Trending</div>
+            </div>
+        </div>
+
+        <div class="weekly-section">
+            <div class="weekly-section-title">📜 历史的回响</div>
+
+            <div class="weekly-item history">
+                <div class="weekly-item-title">1975年5月19日，Microsoft 成立</div>
+                <div class="weekly-item-desc">
+                    整整 51 年前，两个年轻人在阿尔伯克基的一个汽车旅馆里，
+                    决定创立一家叫做「微软」的公司。
+                    当时没人知道个人电脑会是什么，没人知道软件居然可以卖钱。
+                    就像今天很多人还在问「AI 到底有什么用」一样。
+                    历史不会简单重复，但总是押着同样的韵脚。
+                    下一个微软，可能就在我们眼皮底下诞生。
+                </div>
+            </div>
+        </div>
+
+        <div class="weekly-section">
+            <div class="weekly-section-title">✍️ 听风说</div>
+
+            <div class="weekly-note">
+                <p>这周跟几个朋友聊天，发现大家对 AI 的态度明显分成两派：</p>
+                <p>一派已经完全离不开了，从写代码到做PPT到订机票，什么都让 AI 帮忙；
+                另一派还在观望，总觉得「等 AI 再成熟一点我再用」。</p>
+                <p>我想说的是：AI 永远不会「完全成熟」，就像互联网也一直在进化一样。
+                现在就是最好的开始时机——不是因为 AI 已经完美了，而是因为现在开始，
+                你就能比别人多一年的「使用 AI 的经验」。</p>
+                <p>一年后，这个差距会非常非常大。</p>
+            </div>
+        </div>
+
+        <div class="weekly-footer">
+            <p>以上就是本周的内容，如果你觉得有用，欢迎转发给你的朋友。</p>
+            <div class="weekly-actions">
+                <a href="weekly.html" class="weekly-action-btn">← 查看往期</a>
+                <a href="#" class="weekly-action-btn">📧 订阅更新</a>
+                <a href="index.html" class="weekly-action-btn">返回首页</a>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p class="footer-text">© 2026 文明切片 · 听风</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
