@@ -1,0 +1,72 @@
+backend:
+  name: github
+  repo: tingfeng007/my-blog
+  branch: main
+  base_url: https://api.netlify.com
+  auth_endpoint: auth
+
+media_folder: images
+public_folder: /images
+
+site_url: https://my-blog-rose-nine.vercel.app
+display_url: https://my-blog-rose-nine.vercel.app
+
+collections:
+  - name: articles
+    label: 深度文章
+    label_singular: 文章
+    folder: /
+    slug: article-{{slug}}
+    summary: '{{title}} · {{date}}'
+    create: true
+    filter: { field: type, value: article }
+    fields:
+      - { label: '类型', name: type, widget: hidden, default: article }
+      - { label: '标题', name: title, widget: string }
+      - { label: '副标题', name: subtitle, widget: string }
+      - { label: '发布日期', name: date, widget: datetime, format: 'YYYY年MM月DD日', date_format: 'YYYY年MM月DD日', time_format: false }
+      - { label: '分类标签', name: category, widget: select, options: ['风向评论', '技术观察', '读书笔记', '生活随笔'], default: '风向评论' }
+      - { label: '阅读时间', name: readtime, widget: string, default: '约 15 分钟' }
+      - { label: '字数', name: wordcount, widget: string, default: '约 6000 字' }
+      - { label: '摘要', name: excerpt, widget: text }
+      - { label: '正文内容', name: body, widget: markdown, buttons: ['bold', 'italic', 'link', 'heading-three', 'heading-four', 'quote', 'bulleted-list', 'numbered-list'] }
+
+  - name: weekly
+    label: 每周切片
+    label_singular: 每周切片
+    folder: /
+    slug: weekly-{{slug}}
+    summary: '第{{number}}期 · {{date}}'
+    create: true
+    filter: { field: type, value: weekly }
+    fields:
+      - { label: '类型', name: type, widget: hidden, default: weekly }
+      - { label: '期数', name: number, widget: number, min: 1, default: 1 }
+      - { label: '主题', name: title, widget: string }
+      - { label: '发布日期', name: date, widget: datetime, format: 'YYYY年MM月DD日', date_format: 'YYYY年MM月DD日', time_format: false }
+      - { label: '头条内容', name: headline, widget: object, fields: [
+          { label: '标题', name: title, widget: string },
+          { label: '内容', name: content, widget: text }
+        ]}
+      - { label: '必须关注', name: mustread, widget: list, fields: [
+          { label: '标题', name: title, widget: string },
+          { label: '来源', name: source, widget: string, required: false },
+          { label: '内容摘要', name: content, widget: text }
+        ]}
+      - { label: '历史回响', name: history, widget: text, required: false }
+      - { label: '听风说', name: note, widget: text }
+
+  - name: settings
+    label: 网站设置
+    delete: false
+    editor:
+      preview: false
+    files:
+      - name: general
+        label: 基本设置
+        file: site-settings.json
+        fields:
+          - { label: 网站标题, name: sitetitle, widget: string, default: '文明切片' }
+          - { label: 网站描述, name: sitedesc, widget: text, default: '听风的个人博客' }
+          - { label: 作者名字, name: author, widget: string, default: '听风' }
+          - { label: 作者简介, name: authorbio, widget: text, default: '自由写作者，独立观察者。' }
