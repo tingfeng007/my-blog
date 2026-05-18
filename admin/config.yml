@@ -4,13 +4,11 @@ backend:
   branch: main
   base_url: https://api.netlify.com
   auth_endpoint: auth
-  use_graphql: true
 
 media_folder: images
 public_folder: /images
-
-site_url: https://my-blog-rose-nine.vercel.app
-display_url: https://my-blog-rose-nine.vercel.app
+site_url: https://cute-dango-7fb7d7.netlify.app
+display_url: https://cute-dango-7fb7d7.netlify.app
 
 collections:
   - name: articles
