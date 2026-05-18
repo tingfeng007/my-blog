@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>数字时代的注意力危机 | 文明切片</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&family=Noto+Sans+SC:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--accent), var(--accent-light));
+            z-index: 1000;
+            transition: width 0.1s ease;
+        }
+
+        .article-hero {
+            padding: 140px 32px 60px;
+            text-align: center;
+            position: relative;
+        }
+
+        .article-hero::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--accent), transparent);
+        }
+
+        .article-category {
+            display: inline-block;
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 24px;
+            padding: 6px 14px;
+            background: rgba(184, 134, 11, 0.08);
+            border-radius: 20px;
+        }
+
+        .article-title {
+            font-family: var(--font-serif);
+            font-size: clamp(28px, 5vw, 42px);
+            font-weight: 700;
+            line-height: 1.4;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, var(--text-primary) 0%, var(--accent) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .article-subtitle {
+            font-size: 17px;
+            color: var(--text-secondary);
+            font-weight: 300;
+            max-width: 640px;
+            margin: 0 auto 32px;
+            line-height: 1.7;
+        }
+
+        .article-meta {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            font-size: 13px;
+            color: var(--text-muted);
+            flex-wrap: wrap;
+        }
+
+        .article-content {
+            max-width: 720px;
+            margin: 0 auto;
+            padding: 60px 32px 80px;
+        }
+
+        .article-body {
+            font-size: 17px;
+            line-height: 2;
+            color: var(--text-primary);
+            font-family: var(--font-sans);
+        }
+
+        .article-body > p:first-child::first-letter {
+            font-family: var(--font-serif);
+            font-size: 3.5em;
+            font-weight: 700;
+            float: left;
+            line-height: 1;
+            margin-right: 12px;
+            margin-top: 6px;
+            color: var(--accent);
+        }
+
+        .article-body p {
+            margin-bottom: 28px;
+            text-align: justify;
+        }
+
+        .article-body h2 {
+            font-family: var(--font-serif);
+            font-size: 26px;
+            font-weight: 600;
+            margin: 56px 0 24px;
+            padding-bottom: 12px;
+            border-bottom: 2px solid var(--accent);
+            display: inline-block;
+        }
+
+        .article-body h3 {
+            font-family: var(--font-serif);
+            font-size: 20px;
+            font-weight: 600;
+            margin: 40px 0 16px;
+            color: var(--text-primary);
+        }
+
+        .article-body blockquote {
+            border-left: 3px solid var(--accent);
+            padding: 28px 28px 28px 36px;
+            margin: 40px 0;
+            color: var(--text-secondary);
+            font-style: italic;
+            background: linear-gradient(90deg, rgba(184, 134, 11, 0.06), transparent);
+            font-size: 16px;
+            line-height: 1.9;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .article-body blockquote p:last-child {
+            margin-bottom: 0;
+        }
+
+        .article-body strong {
+            color: var(--accent);
+            font-weight: 600;
+        }
+
+        .article-body ul, .article-body ol {
+            margin: 24px 0;
+            padding-left: 28px;
+        }
+
+        .article-body li {
+            margin-bottom: 12px;
+            line-height: 1.8;
+        }
+
+        .article-divider {
+            text-align: center;
+            margin: 48px 0;
+            color: var(--text-muted);
+            font-size: 22px;
+            letter-spacing: 12px;
+        }
+
+        .article-footer {
+            margin-top: 80px;
+            padding-top: 40px;
+            border-top: 1px solid var(--border);
+        }
+
+        .article-author-card {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            padding: 28px;
+            background: var(--bg-alt);
+            border-radius: 12px;
+            margin-bottom: 32px;
+        }
+
+        .article-author-avatar {
+            width: 64px;
+            height: 64px;
+            background: linear-gradient(135deg, var(--accent), var(--accent-light));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-family: var(--font-serif);
+            font-size: 28px;
+            font-weight: 600;
+            flex-shrink: 0;
+        }
+
+        .article-author-info h4 {
+            font-family: var(--font-serif);
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 6px;
+        }
+
+        .article-author-info p {
+            font-size: 14px;
+            color: var(--text-secondary);
+            margin: 0;
+        }
+
+        .article-share {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin-top: 24px;
+            flex-wrap: wrap;
+        }
+
+        .article-share-btn {
+            padding: 10px 20px;
+            background: transparent;
+            border: 1px solid var(--border);
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 13px;
+            border-radius: 20px;
+            transition: all 0.2s ease;
+        }
+
+        .article-share-btn:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+
+        .back-to-top {
+            position: fixed;
+            bottom: 32px;
+            right: 32px;
+            width: 44px;
+            height: 44px;
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(20px);
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            z-index: 100;
+        }
+
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .back-to-top:hover {
+            border-color: var(--accent);
+        }
+
+        .back-to-top::after {
+            content: '↑';
+            font-size: 16px;
+            color: var(--text-muted);
+        }
+
+        .back-to-top:hover::after {
+            color: var(--accent);
+        }
+
+        @media (max-width: 768px) {
+            .article-hero {
+                padding: 110px 24px 40px;
+            }
+
+            .article-content {
+                padding: 40px 24px 60px;
+            }
+
+            .article-body {
+                font-size: 16px;
+            }
+
+            .article-author-card {
+                flex-direction: column;
+                text-align: center;
+                padding: 24px;
+            }
+
+            .back-to-top {
+                bottom: 20px;
+                right: 20px;
+                width: 40px;
+                height: 40px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="progress-bar" id="progressBar"></div>
+
+    <nav class="nav">
+        <div class="nav-container">
+            <a href="index.html" class="logo">文明切片</a>
+            <div class="nav-links">
+                <a href="index.html#articles" class="nav-link">文章</a>
+                <a href="weekly.html" class="nav-link">每周切片</a>
+                <a href="ai-hub.html" class="nav-link">AI 启动台</a>
+                <a href="about.html" class="nav-link">关于</a>
+            </div>
+        </div>
+    </nav>
+
+    <header class="article-hero">
+        <div class="article-category">风向评论</div>
+        <h1 class="article-title">数字时代的注意力危机</h1>
+        <p class="article-subtitle">我们的注意力正在被切成碎末，而你甚至意识不到它在发生</p>
+        <div class="article-meta">
+            <span>📅 2026年5月18日</span>
+            <span style="color: var(--accent);">·</span>
+            <span>⏱️ 阅读约 15 分钟</span>
+            <span style="color: var(--accent);">·</span>
+            <span>👁️ 本文约 6500 字</span>
+        </div>
+    </header>
+
+    <main class="article-content">
+        <article class="article-body">
+            <p>故事是这样的。</p>
+
+            <p>前几天凌晨两点，我坐在马桶上刷手机。准确的说，我是坐在马桶上，手指在屏幕上无意识的上滑，上滑，上滑。</p>
+
+            <p>刷到什么了？现在回想起来，一片空白。</p>
+
+            <p>有个猫翻跟头的视频，有个专家聊经济的，有个美食博主在做红烧肉，有个姑娘吐槽渣男，有个人演示了一个很神奇的PPT技巧，有个一分钟看完的电影解说。加起来可能有三四十条内容，每一条我都看完了，每一条都让我觉得"哦，有点意思"。</p>
+
+            <p>然后冲水，起身，躺回床上。</p>
+
+            <p>关灯的那一刻我突然愣住了。</p>
+
+            <p>我刚才，到底干了什么？</p>
+
+            <p>半个小时的时间，就这么没了。我获得了什么？什么都没有。没有任何一个信息能在我脑子里停留超过三分钟。没有任何一个画面值得我第二天跟朋友聊起。我就像一个站在瀑布下面的人，张着嘴接水，喝了半个小时，一滴水都没咽下去。</p>
+
+            <p>全漏了。</p>
+
+            <p>说真的，这种感觉越来越频繁。</p>
+
+            <p>你有没有过这种体验，打开电脑想写点东西，桌面右下角弹出来一个新闻，你点进去看了两分钟，看完顺手点了旁边一个相关推荐，然后又一个，然后又一个。等你回过神来，四十分钟过去了，文档还是空白的。</p>
+
+            <p>你有没有过这种体验，跟朋友吃饭，聊到一半两个人同时拿出手机，各自刷了五分钟，然后放下手机，面面相觑，都忘了刚才聊到哪了。</p>
+
+            <p>你有没有过这种体验，想认真看一本书，看了三页就忍不住拿起手机，解锁，划两下，什么都没看，锁上，放回去。过了两分钟，又重复一遍这个动作。</p>
+
+            <p><strong>我们的注意力，正在被切成碎末。</strong></p>
+
+            <p>而且最可怕的是什么？你甚至意识不到它在发生。就像温水煮青蛙，等你发现不对劲的时候，你已经丧失了深度思考的能力。</p>
+
+            <p>我是真的觉得，这是这个时代最隐蔽也最严重的一场危机。</p>
+
+            <p>没有人拿着刀逼你看手机。没有人把你的手按在屏幕上强迫你上滑。一切都是你"自愿"的。你甚至觉得自己在"学习"，在"获取信息"，在"跟世界保持连接"。</p>
+
+            <p>多好的杀人方式啊，刀上还抹着蜜。</p>
+
+            <p>坦率的讲，我自己也在这个坑里。我跟你一样，每天都在跟自己的注意力打架。所以这篇文章不是什么专家来教育你，就是一个坑里的人，跟你聊聊我看到的坑底是什么样的。</p>
+
+            <p>先聊点技术层面的。</p>
+
+            <p>很多人可能不知道，现在你手机里的每一个APP，背后都有一个几百人的团队，他们的全职工作就是研究怎么让你多停留一秒钟。注意，是一秒钟。一个亿的日活，每人多停留一秒，那就是每天多出来三万个小时的注意力时长，换算成广告就是真金白银。</p>
+
+            <p>他们有最顶级的心理学家，最懂人性的产品经理，最先进的算法模型。他们研究你的每一次点击，每一次停留，每一次跳过。他们知道什么样的封面能让你停下来，什么样的开头前三秒能抓住你，什么样的音乐能触发你的情绪，什么样的评论区能让你留下来吵架。</p>
+
+            <p><strong>你以为你在刷内容，其实是内容在刷你。</strong></p>
+
+            <p>而且最骚的是什么？这个东西是有反身性的。你刷的越多，算法就越懂你，给你推的东西就越精准，你就越停不下来。这是一个正反馈循环，一个越转越快的飞轮。你一旦上去了，靠自己的意志力很难下来。</p>
+
+            <p>我有时候觉得，我们这代人，就像一群赤手空拳的原始人，面对的是装备了核弹头的现代军队。</p>
+
+            <p>怎么打？</p>
+
+            <p>但是吧，话说回来，全怪算法也不公平。</p>
+
+            <p>回到注意力这个事情本身。为什么我们这么容易被分散？为什么深度思考这么难？</p>
+
+            <p>其实人脑本身就是这么设计的。我们的大脑天然对新鲜事物敏感。在原始丛林里，任何一点风吹草动都可能是危险，所以我们进化出了随时扫描周围环境的本能。这个本能写在我们的基因里，几百万年没变过。</p>
+
+            <p>问题是，环境变了。</p>
+
+            <p>原始丛林里可能一天才出现一两次新鲜刺激。现在的手机里，每三秒钟就有一个。我们那个几百万年没更新过的旧版大脑，面对这个每三秒钟就给你一个新刺激的新环境，直接过载了。</p>
+
+            <p>它根本处理不过来。它只能不停的切换，切换，切换。</p>
+
+            <p>然后最有意思的事情发生了。你以为你在"多任务处理"，你以为你同时在看好几件事，效率很高。但实际上，大脑根本就没有什么多任务处理。它做的事情叫"任务切换"，每次切换都有一个叫"切换成本"的东西。</p>
+
+            <p>就是说，你从A任务切到B任务，再切回A任务的时候，你的大脑需要时间重新加载A任务的上下文，重新进入状态。这个切换成本，一般是10-15分钟。</p>
+
+            <p>所以你以为你五分钟看一次手机，每次只看三十秒。实际上，每次看完手机切回工作，你都需要十多分钟才能重新进入深度思考的状态。相当于你这一整天，根本就没有真正的工作过。</p>
+
+            <p><strong>你一直都在热身，从来没有真正开跑。</strong></p>
+
+            <p>这个事，我自己感受特别深。</p>
+
+            <p>我写文章的时候，如果中间拿了一次手机，回了几条消息，再回来写，那感觉就像刚跑完步停下来歇了半小时，再想重新启动那个节奏，特别难。之前脑子里那些连贯的想法，那些呼之欲出的句子，全没了。就像一团火，你把它晾在那，它就灭了。你得重新生火，重新预热，重新找到那个状态。</p>
+
+            <p>太痛苦了。</p>
+
+            <p>而深度思考这个东西，它最依赖的就是那个连续的、不被打断的状态。它就像烧开水，你得一直烧，一直烧，烧到100度它才开。你烧到50度停下来，凉了，下次再烧，又得从20度开始。</p>
+
+            <p>你永远烧不开。</p>
+
+            <p>这就是为什么很多人感觉自己每天都在忙，都在接收信息，但是好像从来没有什么真正有深度的想法。因为深度思考不是一个可以碎片化完成的事情。它需要大块的、连续的、不被打扰的时间。它需要你沉浸进去，进入那个"心流"的状态。</p>
+
+            <p>而我们现在的生活环境，正在系统性的、有组织的、批量的消灭这种大块时间。</p>
+
+            <div class="article-divider">···</div>
+
+            <p>说到这个，我想聊一个人，叫卡尔·纽波特。他写过一本书叫《深度工作》。我几年前看的，当时觉得写的挺好，但也没特别震撼。现在回头看，这个人简直就是个预言家。</p>
+
+            <p>他在书里说的一句话，我现在越来越认同。他说，深度工作的能力，正在成为这个时代最稀缺也最有价值的能力。</p>
+
+            <p>你想想看。现在这个时代，信息是免费的，知识是免费的，工具是免费的。你想学任何东西，网上都能找到教程。你想做任何事情，都有免费的工具可以用。那什么是稀缺的？</p>
+
+            <p>注意力。</p>
+
+            <p>能长时间把注意力集中在一件事情上的能力。</p>
+
+            <p>你去看现在那些真正厉害的人，他们最大的共同点不是智商高，不是资源多，是他们能保护自己的注意力。他们能把手机扔到另一个房间，连续四个小时不看它，就专注在一件事情上。</p>
+
+            <p>这个能力，说真的，现在比会编程、会英语、会做PPT值钱多了。</p>
+
+            <p>但是吧，我也不想站着说话不腰疼。</p>
+
+            <p>我非常理解那种感觉。你不是程序员，不需要写代码。你不是做内容的，不需要天天写文章。你就是一个普通的上班族，每天朝九晚五，下班了就想放松放松。你跟我说什么深度工作，什么深度思考，你觉得跟你没关系。</p>
+
+            <p>我非常理解。真的。</p>
+
+            <p>我也不想写那种"教你五个技巧提升专注力"的鸡汤文。那种文章你看完，转头该刷还是刷。我想聊点更实在的。</p>
+
+            <p>其实注意力这个事，最底层的问题不是时间管理，不是自律，是价值观。</p>
+
+            <p>你得先想明白一件事，你的注意力，是你拥有的最宝贵的东西。比钱宝贵，比时间宝贵，比什么都宝贵。</p>
+
+            <p>钱花了可以再赚。时间过去了就是过去了，你留不住。但是注意力不一样，你把注意力投在哪里，你就会成为什么样的人。你每天看什么，想什么，关注什么，这些东西加起来，就是你。</p>
+
+            <p>你每天看三个小时的短视频，三个月之后，你就是一个脑子里装满了碎片化段子的人。你每天用三个小时深度思考一件事，三个月之后，你就是那个领域的专家。</p>
+
+            <p>这不是鸡汤，这是最朴素的因果。</p>
+
+            <p>所以问题根本就不是"怎么才能不刷手机"。问题是，你到底想成为一个什么样的人？你到底想把自己的注意力投在哪里？</p>
+
+            <p>想明白了这个问题，所有的技巧都是次要的。</p>
+
+            <p>想不明白这个问题，你下再多的时间管理APP，设再多的番茄钟，都没用。</p>
+
+            <p>反正我觉得，现在这个阶段，能意识到这件事本身，就已经赢了一半了。大多数人还在水里，根本不知道自己在溺水。他们觉得大家都这样啊，有什么问题吗？</p>
+
+            <p>问题大了去了。</p>
+
+            <p>当所有人的注意力都被切成15秒的碎片，当所有人都只能接受短平快的刺激，当所有人都丧失了深度阅读、深度思考、深度对话的能力，这个世界会变成什么样？</p>
+
+            <p>你想想看。</p>
+
+            <p>那些需要长时间深度思考才能做出来的东西，谁来做？那些复杂的、困难的、重要的问题，谁来解决？那些需要读几百页书才能理解的思想，谁来传承？</p>
+
+            <p>大家都在水面上飘着，没有人往下潜了。</p>
+
+            <p>那最后，整个社会的深度，就只能停留在15秒。</p>
+
+            <p>太可怕了。</p>
+
+            <div class="article-divider">···</div>
+
+            <p>大时代啊，朋友们。</p>
+
+            <p>我们这代人，可能是人类历史上第一代面对这个问题的人。我们是第一代数字原住民，我们也是第一代注意力被系统性收割的人。没有前人事先告诉我们应该怎么办，没有教科书教我们怎么应对。我们都是小白鼠，在一个前所未有的社会实验里。</p>
+
+            <p>但是也不用太悲观。说真的，这件事反过来想，反而可能是普通人最大的机会。</p>
+
+            <p>你想想看。当全世界99%的人都在碎片化，都在丧失深度思考的能力。只要你能把这个能力保住，哪怕只是恢复到二十年前普通人的水平，你就已经能超过99%的人了。</p>
+
+            <p>这多划算啊。</p>
+
+            <p>别人都在自废武功，你只要好好吃饭好好睡觉，正常锻炼身体，你就已经是武林高手了。</p>
+
+            <p>说起来有点讽刺，但事实就是这样。</p>
+
+            <p>最后，分享几个我自己在用的小方法。不是什么标准答案，就是我自己试下来觉得有点用的，你也可以试试。</p>
+
+            <p><strong>第一个，物理隔离。</strong>写东西或者工作的时候，把手机放到另一个房间。真的，就这么简单。不要相信你的意志力。意志力这个东西，是这个世界上最不靠谱的东西。你把手机放在伸手就能拿到的地方，你迟早会拿起来的。别考验人性，人性经不起考验。</p>
+
+            <p><strong>第二个，主动制造无聊。</strong>我现在每天会特意留一段什么都不干的时间。比如走路的时候不听 podcast，吃饭的时候不看视频，排队的时候不刷手机。就发呆。就无聊。你会发现，当你无聊的时候，你的大脑会开始自己想事情。很多好想法，都是在无聊的时候冒出来的。反而你一直在刷手机的时候，什么想法都没有。</p>
+
+            <p><strong>第三个，每天至少留一个小时的"无屏幕时间"。</strong>可以是看书，可以是散步，可以是跟人聊天，可以是发呆。就是不要看屏幕。这一个小时，是给你的大脑解毒的时间。它需要从那种高频刺激的状态里退出来，回到正常的节奏。</p>
+
+            <p><strong>第四个，练习深度阅读。</strong>就是那种，拿起一本书，连续看一个小时，中间不碰手机的阅读。这个能力现在真的需要练。一开始可能特别痛苦，看十分钟就想拿手机。没关系，慢慢来。能看二十分钟就是进步，能看半个小时就是巨大的胜利。</p>
+
+            <p>就这四个。没有什么复杂的技巧，都是特别朴素的事情。</p>
+
+            <p>但越是朴素的事情，越难做到。</p>
+
+            <p>我自己也做不到每天都坚持。我也经常破戒，一刷就是一个小时。刷完了也会有负罪感。但没关系，这是一场持久战，不是一天两天的事。你不用赢每一场战斗，只要整体的趋势是往好的方向走，就够了。</p>
+
+            <p>说真的，这件事没有什么终极解决方案。我们这辈子，可能都要跟自己的注意力打架。这就是我们这代人的宿命。</p>
+
+            <p>但是这场架，值得打。</p>
+
+            <p>因为你打赢的每一分钟，都是你自己的。</p>
+
+            <p>比比说，磨平一些信息差。</p>
+
+            <p>我觉得在注意力这件事上，最大的信息差就是，很多人还没意识到这是一场战争。</p>
+
+            <p>他们还以为，那只是个手机。</p>
+
+            <p>他们还以为，那只是个APP。</p>
+
+            <p>他们还以为，那只是自己的选择。</p>
+
+            <p>不是的。</p>
+
+            <p>那是全世界最聪明的几百个大脑，设计出来的最精密的注意力收割机器，正在跟你那个几百万年没更新过的原始大脑打架。</p>
+
+            <p><strong>你得先意识到这是一场战争，你才有赢的可能。</strong></p>
+
+            <p>以上。</p>
+
+            <p>既然看到这里了，如果觉得不错，随手点个赞、在看、转发三连吧，如果想第一时间收到推送，也可以给我个星标⭐～</p>
+
+            <p>谢谢你看我的文章，我们，下次再见。</p>
+        </article>
+
+        <div class="article-footer">
+            <div class="article-author-card">
+                <div class="article-author-avatar">听</div>
+                <div class="article-author-info">
+                    <h4>听风</h4>
+                    <p>自由写作者，独立观察者。在喧嚣的时代保持清醒。</p>
+                </div>
+            </div>
+
+            <div class="article-share">
+                <a href="#" class="article-share-btn">微信分享</a>
+                <a href="#" class="article-share-btn">Twitter</a>
+                <a href="index.html" class="article-share-btn">返回首页</a>
+            </div>
+        </div>
+    </main>
+
+    <div class="back-to-top" id="backToTop"></div>
+
+    <footer class="footer">
+        <div class="container">
+            <p class="footer-text">© 2026 文明切片 · 听风</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        const progressBar = document.getElementById('progressBar');
+        const backToTop = document.getElementById('backToTop');
+
+        window.addEventListener('scroll', () => {
+            const scrollTop = window.scrollY;
+            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const progress = (scrollTop / docHeight) * 100;
+            progressBar.style.width = progress + '%';
+
+            if (scrollTop > 500) {
+                backToTop.classList.add('visible');
+            } else {
+                backToTop.classList.remove('visible');
+            }
+        });
+
+        backToTop.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+    </script>
+</body>
+</html>
