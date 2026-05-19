@@ -1,0 +1,788 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>每日投资市场日报 2026-05-18 | 文明切片</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&family=Noto+Sans+SC:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--accent), var(--accent-light));
+            z-index: 1000;
+            transition: width 0.1s ease;
+        }
+
+        .article-hero {
+            padding: 140px 32px 60px;
+            text-align: center;
+            position: relative;
+        }
+
+        .article-hero::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--accent), transparent);
+        }
+
+        .article-category {
+            display: inline-block;
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 24px;
+            padding: 6px 14px;
+            background: rgba(184, 134, 11, 0.08);
+            border-radius: 20px;
+        }
+
+        .article-title {
+            font-family: var(--font-serif);
+            font-size: clamp(26px, 5vw, 38px);
+            font-weight: 700;
+            line-height: 1.4;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, var(--text-primary) 0%, var(--accent) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .article-subtitle {
+            font-size: 16px;
+            color: var(--text-secondary);
+            font-weight: 300;
+            max-width: 640px;
+            margin: 0 auto 32px;
+            line-height: 1.7;
+        }
+
+        .article-meta {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            font-size: 13px;
+            color: var(--text-muted);
+            flex-wrap: wrap;
+        }
+
+        .article-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 60px 32px 80px;
+        }
+
+        .article-body {
+            font-size: 16px;
+            line-height: 1.9;
+            color: var(--text-primary);
+            font-family: var(--font-sans);
+        }
+
+        .article-body p {
+            margin-bottom: 24px;
+            text-align: justify;
+        }
+
+        .article-body h2 {
+            font-family: var(--font-serif);
+            font-size: 24px;
+            font-weight: 600;
+            margin: 48px 0 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--accent);
+            display: inline-block;
+        }
+
+        .article-body h3 {
+            font-family: var(--font-serif);
+            font-size: 19px;
+            font-weight: 600;
+            margin: 32px 0 14px;
+            color: var(--text-primary);
+        }
+
+        .article-body strong {
+            color: var(--accent);
+            font-weight: 600;
+        }
+
+        .article-body ul, .article-body ol {
+            margin: 20px 0;
+            padding-left: 26px;
+        }
+
+        .article-body li {
+            margin-bottom: 10px;
+            line-height: 1.7;
+        }
+
+        .summary-card {
+            background: linear-gradient(135deg, rgba(184, 134, 11, 0.08), rgba(184, 134, 11, 0.02));
+            border: 1px solid rgba(184, 134, 11, 0.15);
+            border-radius: 12px;
+            padding: 28px;
+            margin: 32px 0;
+        }
+
+        .summary-card h4 {
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--accent);
+            margin-bottom: 14px;
+        }
+
+        .summary-card p {
+            font-size: 15px;
+            line-height: 1.8;
+            color: var(--text-secondary);
+            margin: 0;
+        }
+
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 24px 0;
+            font-size: 14px;
+        }
+
+        .data-table th {
+            background: var(--bg-alt);
+            padding: 12px 16px;
+            text-align: left;
+            font-weight: 600;
+            border-bottom: 2px solid var(--accent);
+        }
+
+        .data-table td {
+            padding: 10px 16px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .data-table tr:hover td {
+            background: rgba(184, 134, 11, 0.03);
+        }
+
+        .hot-tag {
+            display: inline-block;
+            padding: 2px 8px;
+            background: rgba(239, 68, 68, 0.1);
+            color: #ef4444;
+            font-size: 12px;
+            border-radius: 4px;
+            margin-left: 8px;
+        }
+
+        .risk-box {
+            background: linear-gradient(135deg, rgba(239, 68, 68, 0.06), rgba(239, 68, 68, 0.02));
+            border-left: 3px solid #ef4444;
+            padding: 20px 24px;
+            margin: 24px 0;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .risk-box h4 {
+            color: #ef4444;
+            font-size: 15px;
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+
+        .risk-box ul {
+            margin: 0;
+            color: var(--text-secondary);
+        }
+
+        .advice-box {
+            background: linear-gradient(135deg, rgba(34, 197, 94, 0.06), rgba(34, 197, 94, 0.02));
+            border-left: 3px solid #22c55e;
+            padding: 20px 24px;
+            margin: 24px 0;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .advice-box h4 {
+            color: #22c55e;
+            font-size: 15px;
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+
+        .advice-box ul {
+            margin: 0;
+            color: var(--text-secondary);
+        }
+
+        .article-divider {
+            text-align: center;
+            margin: 40px 0;
+            color: var(--text-muted);
+            font-size: 20px;
+            letter-spacing: 10px;
+        }
+
+        .article-footer {
+            margin-top: 70px;
+            padding-top: 36px;
+            border-top: 1px solid var(--border);
+        }
+
+        .article-author-card {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            padding: 24px;
+            background: var(--bg-alt);
+            border-radius: 12px;
+            margin-bottom: 28px;
+        }
+
+        .article-author-avatar {
+            width: 56px;
+            height: 56px;
+            background: linear-gradient(135deg, var(--accent), var(--accent-light));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-family: var(--font-serif);
+            font-size: 24px;
+            font-weight: 600;
+            flex-shrink: 0;
+        }
+
+        .article-author-info h4 {
+            font-family: var(--font-serif);
+            font-size: 17px;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .article-author-info p {
+            font-size: 13px;
+            color: var(--text-secondary);
+            margin: 0;
+        }
+
+        .article-share {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+
+        .article-share-btn {
+            padding: 9px 18px;
+            background: transparent;
+            border: 1px solid var(--border);
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 13px;
+            border-radius: 20px;
+            transition: all 0.2s ease;
+        }
+
+        .article-share-btn:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+
+        .back-to-top {
+            position: fixed;
+            bottom: 32px;
+            right: 32px;
+            width: 44px;
+            height: 44px;
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(20px);
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            z-index: 100;
+        }
+
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .back-to-top:hover {
+            border-color: var(--accent);
+        }
+
+        .back-to-top::after {
+            content: '↑';
+            font-size: 16px;
+            color: var(--text-muted);
+        }
+
+        .back-to-top:hover::after {
+            color: var(--accent);
+        }
+
+        @media (max-width: 768px) {
+            .article-hero {
+                padding: 110px 24px 40px;
+            }
+
+            .article-content {
+                padding: 40px 24px 60px;
+            }
+
+            .article-body {
+                font-size: 15px;
+            }
+
+            .article-author-card {
+                flex-direction: column;
+                text-align: center;
+                padding: 20px;
+            }
+
+            .back-to-top {
+                bottom: 20px;
+                right: 20px;
+                width: 40px;
+                height: 40px;
+            }
+
+            .data-table {
+                font-size: 13px;
+            }
+
+            .data-table th, .data-table td {
+                padding: 8px 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="progress-bar" id="progressBar"></div>
+
+    <nav class="nav">
+        <div class="nav-container">
+            <a href="index.html" class="logo">文明切片</a>
+            <div class="nav-links">
+                <a href="index.html#articles" class="nav-link">文章</a>
+                <a href="index.html#market" class="nav-link">市场资讯</a>
+                <a href="weekly.html" class="nav-link">每周切片</a>
+                <a href="ai-hub.html" class="nav-link">AI 启动台</a>
+                <a href="about.html" class="nav-link">关于</a>
+            </div>
+        </div>
+    </nav>
+
+    <header class="article-hero">
+        <div class="article-category">每日市场资讯</div>
+        <h1 class="article-title">每日投资市场日报</h1>
+        <p class="article-subtitle">聚焦市场动态，把握投资脉搏，每日更新核心资讯与资金动向</p>
+        <div class="article-meta">
+            <span>📅 2026年5月18日</span>
+            <span style="color: var(--accent);">·</span>
+            <span>⏱️ 阅读约 8 分钟</span>
+        </div>
+    </header>
+
+    <main class="article-content">
+        <article class="article-body">
+
+            <div class="summary-card">
+                <h4>📊 核心摘要</h4>
+                <p>A股市场呈现低开高走、全线翻红格局，科创50以2.51%涨幅领涨。存储芯片成为最强主线，板块涨超8%，受AI需求爆发、供需缺口扩大、国产替代加速三重驱动。市场分化加剧，资金从高位题材流向低位硬科技和高股息防御板块。两融新规今日生效，高位杠杆资金面临被动降仓压力。北向资金连续流出，外围市场承压。投资上应紧跟高景气主线，规避无业绩纯题材，控制仓位应对波动。</p>
+            </div>
+
+            <h2>一、今日市场概览</h2>
+            <p><strong>指数全线翻红，科创50领涨</strong></p>
+
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>指数</th>
+                        <th>收盘点位</th>
+                        <th>涨跌幅</th>
+                        <th>特征</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>上证指数</td>
+                        <td>4126.35点</td>
+                        <td style="color: #22c55e; font-weight: 600;">+0.23%</td>
+                        <td>低开后震荡，4100点成关键支撑</td>
+                    </tr>
+                    <tr>
+                        <td>深证成指</td>
+                        <td>15513.13点</td>
+                        <td style="color: #22c55e; font-weight: 600;">+0.62%</td>
+                        <td>延续调整格局</td>
+                    </tr>
+                    <tr>
+                        <td>创业板指</td>
+                        <td>3909.26点</td>
+                        <td style="color: #22c55e; font-weight: 600;">+0.81%</td>
+                        <td>科创成长端承压明显</td>
+                    </tr>
+                    <tr>
+                        <td>科创50</td>
+                        <td>—</td>
+                        <td style="color: #22c55e; font-weight: 600;">+2.51%</td>
+                        <td>存储芯片龙头领涨，领涨全场</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>市场特征</h3>
+            <ul>
+                <li>早盘大幅低开，上证指数低开0.37%，深成指低开0.62%，创业板指低开0.87%</li>
+                <li>随后全线翻红，市场情绪有所修复</li>
+                <li>两市成交超9000亿元，主线资金进场明显</li>
+                <li>个股涨跌比1843:3567，下跌家数占优，分化加剧</li>
+                <li>存储芯片成为最强主线，板块涨超8%</li>
+            </ul>
+
+            <h3>美股主要指数表现</h3>
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>指数</th>
+                        <th>最新收盘</th>
+                        <th>涨跌幅</th>
+                        <th>备注</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>道琼斯工业指数</td>
+                        <td>49526.17点</td>
+                        <td style="color: #ef4444; font-weight: 600;">-1.07%</td>
+                        <td>失守5万点关口</td>
+                    </tr>
+                    <tr>
+                        <td>纳斯达克综合指数</td>
+                        <td>26225.14点</td>
+                        <td style="color: #ef4444; font-weight: 600;">-1.54%</td>
+                        <td>科技股重挫</td>
+                    </tr>
+                    <tr>
+                        <td>标普500指数</td>
+                        <td>7408.50点</td>
+                        <td style="color: #ef4444; font-weight: 600;">-1.24%</td>
+                        <td>终结周线七连涨</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>外围影响因素</h3>
+            <ul>
+                <li>美债30年期收益率破5.1%，创18年新高，全球流动性收紧预期升温</li>
+                <li>布伦特原油突破109美元/桶，通胀担忧再起</li>
+                <li>A50夜盘重挫1.14%</li>
+            </ul>
+
+            <div class="article-divider">···</div>
+
+            <h2>二、市场资讯</h2>
+            <p><strong>政策落地与产业动态</strong></p>
+
+            <h3>核心资讯一：两融新规今日生效</h3>
+            <p>2026年5月18日起，融资融券新规正式落地，平仓线从120%收紧至115%，风险处置时间从1-2天缩至半天。全市场平均担保比例278%，高位杠杆仓、融资重仓股将被被动降仓，高位科技（AI、半导体等）被重点限制融资额度。</p>
+
+            <h3>核心资讯二：存储芯片超级周期确立</h3>
+            <p>存储芯片成为今日最强主线，板块整体涨超8%。兆易创新一季报净利润14.61亿，同比增522.79%；长鑫科技一季度净利暴增1688%。全球DRAM缺口4.9%、NAND缺口4.2%，为15年最严重短缺。</p>
+
+            <h3>核心资讯三：商业航天政策技术资本三重共振</h3>
+            <p>商业航天板块强势，受益于政策加码和技术突破。国家航天局设立商业航天司，纳入国家战略。中科宇航力箭系列运载火箭实现"百星入轨"，年产30发能力。2026年被视为可回收火箭"关键验证之年"，成本有望下降70%-90%。</p>
+
+            <h3>其他重要资讯</h3>
+            <ul>
+                <li><strong>中美经贸磋商达成初步成果：</strong>涉及关税安排、贸易理事会、农产品市场准入等五大领域</li>
+                <li><strong>俄罗斯总统普京访华：</strong>应国家主席习近平邀请，俄罗斯总统普京将于5月19日至20日对中国进行国事访问</li>
+                <li><strong>中国电信推出试商用Token套餐：</strong>涵盖开发者、中小微企业及个人用户，提供"Token+连接+安全"一体化服务</li>
+                <li><strong>国际油价突破110美元/桶：</strong>中东冲突升级，以色列总理内塔尼亚胡与美国总统特朗普讨论重启对伊朗军事行动，油服工程板块受益大涨</li>
+            </ul>
+
+            <div class="article-divider">···</div>
+
+            <h2>三、主力资金动向</h2>
+            <p><strong>北向流出，科技板块受追捧</strong></p>
+
+            <h3>北向资金净流向</h3>
+            <ul>
+                <li>近期趋势：连续两周净流出，两周累计流出300亿元+</li>
+                <li>上周五单日流出：约80亿元</li>
+                <li>减持方向：高位科技、消费权重</li>
+                <li>今日预期：外围大跌+美债高位，北向继续承压</li>
+            </ul>
+
+            <h3>今日资金净流入板块TOP5</h3>
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>排名</th>
+                        <th>板块</th>
+                        <th>涨幅</th>
+                        <th>核心特征</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>元器件</td>
+                        <td style="color: #22c55e; font-weight: 600;">+3.33%</td>
+                        <td>全市场涨幅第一，AI硬件、国产替代主线</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>广播电视</td>
+                        <td style="color: #22c55e; font-weight: 600;">+3.18%</td>
+                        <td>量比2.55，数字经济政策预期</td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>油服工程</td>
+                        <td style="color: #22c55e; font-weight: 600;">+3.07%</td>
+                        <td>油价上涨直接受益，量比2.41</td>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td>电信服务</td>
+                        <td style="color: #22c55e; font-weight: 600;">+2.63%</td>
+                        <td>运营商与算力链联动</td>
+                    </tr>
+                    <tr>
+                        <td>5</td>
+                        <td>自动化设备</td>
+                        <td style="color: #22c55e; font-weight: 600;">+2.60%</td>
+                        <td>智能制造、机器人产业链回流</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>今日资金净流出板块TOP5</h3>
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>排名</th>
+                        <th>板块</th>
+                        <th>特征</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>贵金属</td>
+                        <td>沪银主力合约跌超10%，美国通胀超预期压制</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>游戏</td>
+                        <td>纯题材炒作降温</td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>传媒</td>
+                        <td>无业绩支撑，粤传媒天地板拖累</td>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td>体育概念</td>
+                        <td>概念退潮</td>
+                    </tr>
+                    <tr>
+                        <td>5</td>
+                        <td>养殖业</td>
+                        <td>周期板块调整</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>主力资金个股动向</h3>
+            <p><strong>净流入个股TOP3：</strong></p>
+            <ul>
+                <li>华工科技：净流入41.05亿元，CPO概念反包涨停</li>
+                <li>兆易创新：净流入37.72亿元，存储芯片龙头</li>
+                <li>佰维存储：净流入28.16亿元，业绩暴增1567%</li>
+            </ul>
+            <p><strong>净流出个股：</strong>金螳螂、天孚通信、宁德时代等遭遇净流出</p>
+
+            <div class="article-divider">···</div>
+
+            <h2>四、当前市场风口</h2>
+            <p><strong>硬科技主线明确，分化加剧</strong></p>
+
+            <h3>1. 存储芯片 —— 最强主线 <span class="hot-tag">热门</span></h3>
+            <p><strong>核心逻辑：</strong></p>
+            <ul>
+                <li>AI驱动结构性超级周期：AI服务器存储需求是传统服务器8倍</li>
+                <li>供需缺口15年最严重：DRAM缺口4.9%、NAND缺口4.2%</li>
+                <li>国产替代加速：长鑫科技、兆易创新产能扩张</li>
+                <li>业绩炸裂：兆易创新<strong>+522%</strong>、佰维存储<strong>+1567%</strong>、长鑫科技<strong>+1688%</strong></li>
+            </ul>
+            <p><strong>代表个股：</strong></p>
+            <ul>
+                <li>兆易创新：涨停(+10%)，股价创历史新高</li>
+                <li>佰维存储：+11.2%，放量突破</li>
+                <li>深科技：涨停，先进封装概念</li>
+                <li>同有科技：+13%，20CM涨停</li>
+            </ul>
+
+            <h3>2. 商业航天 —— 政策红利</h3>
+            <p><strong>核心逻辑：</strong></p>
+            <ul>
+                <li>商业航天升至国家战略高度</li>
+                <li>可回收火箭技术突破，成本下降70%-90%</li>
+                <li>IPO元年开启，中科宇航冲刺"商业火箭第一股"</li>
+            </ul>
+            <p><strong>代表个股：</strong></p>
+            <ul>
+                <li>大业股份：+9.99%，商业航天+机器人双概念</li>
+                <li>巨轮智能：+9.95%，减速器、机器人概念</li>
+            </ul>
+            <p style="color: #ef4444; font-size: 14px;">⚠️ 风险警示：巨力索具跌停，因商业航天业务占比低于0.5%，属于"蹭概念"</p>
+
+            <h3>3. AI算力/光通信 —— 政策加码</h3>
+            <p><strong>核心逻辑：</strong></p>
+            <ul>
+                <li>中国电信百亿级Token工厂集采落地</li>
+                <li>5G-A超级上行网络规模商用</li>
+                <li>800G/1.6T光模块需求明确</li>
+            </ul>
+            <p><strong>代表个股：</strong></p>
+            <ul>
+                <li>华工科技：涨停，CPO概念反包</li>
+                <li>中国电信：涨超2%，Token套餐落地</li>
+                <li>润建股份：+7.01%，算力租赁+华为昇腾</li>
+            </ul>
+
+            <h3>4. 绿电/高股息 —— 防御配置</h3>
+            <p><strong>核心逻辑：</strong></p>
+            <ul>
+                <li>市场调整期资金避险需求</li>
+                <li>低估值、高分红属性</li>
+            </ul>
+            <p><strong>代表个股：</strong></p>
+            <ul>
+                <li>大唐发电：涨停(+10%)，绿色电力+风电</li>
+                <li>京能电力：涨停(+10.05%)，3天3板</li>
+                <li>华电辽能：16天9板，超超临界发电</li>
+            </ul>
+
+            <h3>龙头个股表现</h3>
+            <ul>
+                <li><strong>兆易创新</strong>（存储芯片）：涨停，一季报净利<strong>+522%</strong>，历史新高</li>
+                <li><strong>佰维存储</strong>（存储芯片）：+11.2%，业绩暴增1567%</li>
+                <li><strong>华工科技</strong>（CPO）：涨停，光通信龙头反包</li>
+                <li><strong>滨化股份</strong>（化工）：涨停，G5电子氢氟酸+环氧丙烷双涨价</li>
+                <li><strong>粤传媒</strong>（传媒）：天地板-10%，业绩腰斩，17亿资金被套</li>
+            </ul>
+
+            <div class="article-divider">···</div>
+
+            <h2>五、投资参考</h2>
+            <p><strong>信号变化与风险提示</strong></p>
+
+            <h3>今日值得关注的信号或变化</h3>
+            <ul>
+                <li><strong>主线明确化：</strong>市场从"普涨轮动"转向"主线聚焦"，存储芯片成为唯一最强主线</li>
+                <li><strong>高低切换加速：</strong>资金从高位科技流向低位硬科技+高股息防御</li>
+                <li><strong>业绩为王：</strong>无业绩纯题材遭抛弃（粤传媒天地板），有业绩硬科技受追捧</li>
+                <li><strong>北向持续流出：</strong>外资对短期A股偏谨慎，但长期配置逻辑不变</li>
+                <li><strong>政策托底明确：</strong>国常会万亿城市更新+农业现代化规划落地，利好基建、机械</li>
+            </ul>
+
+            <div class="risk-box">
+                <h4>⚠️ 风险提示</h4>
+                <ul>
+                    <li>外围市场压力：美股科技股重挫、美债收益率破5.1%，压制全球风险偏好</li>
+                    <li>两融新规冲击：高位杠杆资金被动降仓，可能加剧短期波动</li>
+                    <li>解禁减持高峰：今日多股解禁，合计市值超500亿</li>
+                    <li>高位题材风险：纯概念炒作无业绩支撑，易遭资金抛弃</li>
+                    <li>油价波动：地缘冲突升级可能扰动能源板块</li>
+                </ul>
+            </div>
+
+            <div class="advice-box">
+                <h4>💡 操作建议</h4>
+                <ul>
+                    <li><strong>短期：</strong>控制仓位在5成左右，关注4100点关键支撑</li>
+                    <li><strong>方向：</strong>紧跟存储芯片、AI算力等高景气主线，远离纯题材炒作</li>
+                    <li><strong>配置：</strong>高低切换，关注低位硬科技+高股息防御平衡配置</li>
+                    <li><strong>风险：</strong>规避高位杠杆仓、解禁减持雷区、无业绩题材股</li>
+                </ul>
+            </div>
+
+        </article>
+
+        <div class="article-footer">
+            <div class="article-author-card">
+                <div class="article-author-avatar">听</div>
+                <div class="article-author-info">
+                    <h4>听风</h4>
+                    <p>自由写作者，独立观察者。每日市场资讯，磨平一些信息差。</p>
+                </div>
+            </div>
+
+            <div class="article-share">
+                <a href="#" class="article-share-btn">微信分享</a>
+                <a href="#" class="article-share-btn">Twitter</a>
+                <a href="index.html" class="article-share-btn">返回首页</a>
+            </div>
+        </div>
+    </main>
+
+    <div class="back-to-top" id="backToTop"></div>
+
+    <footer class="footer">
+        <div class="container">
+            <p class="footer-text">© 2026 文明切片 · 听风</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        const progressBar = document.getElementById('progressBar');
+        const backToTop = document.getElementById('backToTop');
+
+        window.addEventListener('scroll', () => {
+            const scrollTop = window.scrollY;
+            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const progress = (scrollTop / docHeight) * 100;
+            progressBar.style.width = progress + '%';
+
+            if (scrollTop > 500) {
+                backToTop.classList.add('visible');
+            } else {
+                backToTop.classList.remove('visible');
+            }
+        });
+
+        backToTop.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+    </script>
+</body>
+</html>

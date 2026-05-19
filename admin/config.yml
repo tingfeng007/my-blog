@@ -1,10 +1,8 @@
 backend:
-  name: github
-  repo: tingfeng007/my-blog
+  name: git-gateway
   branch: main
-  base_url: https://api.netlify.com
-  auth_endpoint: auth
-  use_graphql: true
+
+local_backend: true
 
 media_folder: images
 public_folder: /images
