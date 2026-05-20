@@ -418,6 +418,24 @@ body {
     margin-bottom: 24px;
 }
 
+.wechat-qrcode {
+    margin: 32px 0;
+    text-align: center;
+}
+
+.wechat-qrcode img {
+    width: 180px;
+    height: 180px;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(44, 36, 27, 0.1);
+    margin-bottom: 12px;
+}
+
+.qrcode-text {
+    font-size: 13px;
+    color: var(--text-muted);
+}
+
 .about-btn {
     display: inline-block;
     margin-top: 12px;
