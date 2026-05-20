@@ -1,59 +1,109 @@
-document.addEventListener('DOMContentLoaded', function() {
-    const observerOptions = {
-        threshold: 0.1,
-        rootMargin: '0px 0px -50px 0px'
-    };
+﻿(function () {
+    function makeVisible(element, index) {
+        element.style.transitionDelay = `${Math.min(index * 70, 420)}ms`;
+        element.classList.add('is-visible');
+    }
 
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.style.opacity = '1';
-                entry.target.style.transform = 'translateY(0)';
-            }
-        });
-    }, observerOptions);
+    document.addEventListener('DOMContentLoaded', function () {
+        const animated = document.querySelectorAll('.reveal-on-scroll, .article-card, .news-item');
 
-    document.querySelectorAll('.article-card').forEach((card, index) => {
-        card.style.opacity = '0';
-        card.style.transform = 'translateY(30px)';
-        card.style.transition = `opacity 0.6s ease ${index * 0.1}s, transform 0.6s ease ${index * 0.1}s`;
-        observer.observe(card);
-    });
+        if ('IntersectionObserver' in window) {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        const index = Number(entry.target.dataset.revealIndex || 0);
+                        makeVisible(entry.target, index);
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
 
-    document.querySelectorAll('.news-item').forEach((item, index) => {
-        item.style.opacity = '0';
-        item.style.transform = 'translateY(20px)';
-        item.style.transition = `opacity 0.5s ease ${index * 0.1}s, transform 0.5s ease ${index * 0.1}s`;
-        observer.observe(item);
-    });
-
-    let lastScroll = 0;
-    const nav = document.querySelector('.nav');
-
-    window.addEventListener('scroll', () => {
-        const currentScroll = window.pageYOffset;
-
-        if (currentScroll > lastScroll && currentScroll > 100) {
-            nav.style.transform = 'translateY(-100%)';
+            animated.forEach((element, index) => {
+                element.classList.add('reveal-on-scroll');
+                element.dataset.revealIndex = index;
+                observer.observe(element);
+            });
         } else {
-            nav.style.transform = 'translateY(0)';
+            animated.forEach((element, index) => makeVisible(element, index));
         }
 
-        nav.style.transition = 'transform 0.3s ease';
-        lastScroll = currentScroll;
-    });
+        const nav = document.querySelector('.nav');
+        let lastScroll = window.scrollY;
 
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
-            e.preventDefault();
-            const target = document.querySelector(this.getAttribute('href'));
-            if (target) {
-                const offsetTop = target.offsetTop - 80;
-                window.scrollTo({
-                    top: offsetTop,
-                    behavior: 'smooth'
-                });
+        function updateNav() {
+            if (!nav) return;
+            const currentScroll = window.scrollY;
+            nav.classList.toggle('is-scrolled', currentScroll > 12);
+
+            if (currentScroll > lastScroll && currentScroll > 160) {
+                nav.style.transform = 'translateY(-100%)';
+            } else {
+                nav.style.transform = 'translateY(0)';
             }
+            lastScroll = Math.max(currentScroll, 0);
+        }
+
+        updateNav();
+        window.addEventListener('scroll', updateNav, { passive: true });
+
+        document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+            anchor.addEventListener('click', function (event) {
+                const target = document.querySelector(this.getAttribute('href'));
+                if (!target) return;
+                event.preventDefault();
+                const offsetTop = target.getBoundingClientRect().top + window.scrollY - 82;
+                window.scrollTo({ top: offsetTop, behavior: 'smooth' });
+            });
         });
     });
-});
+})();
+
+function shareContent(title, url) {
+    const fullUrl = new URL(url, window.location.href).href;
+    const shareText = `${title}\n\n${fullUrl}`;
+
+    if (navigator.share) {
+        navigator.share({ title, text: title, url: fullUrl }).catch(() => copyToClipboard(shareText));
+        return;
+    }
+
+    copyToClipboard(shareText);
+}
+
+function copyToClipboard(text) {
+    if (navigator.clipboard && window.isSecureContext) {
+        navigator.clipboard.writeText(text).then(() => showToast('链接已复制到剪贴板')).catch(() => fallbackCopy(text));
+        return;
+    }
+
+    fallbackCopy(text);
+}
+
+function fallbackCopy(text) {
+    const textarea = document.createElement('textarea');
+    textarea.value = text;
+    textarea.setAttribute('readonly', '');
+    textarea.style.position = 'fixed';
+    textarea.style.opacity = '0';
+    document.body.appendChild(textarea);
+    textarea.select();
+    document.execCommand('copy');
+    document.body.removeChild(textarea);
+    showToast('链接已复制到剪贴板');
+}
+
+function showToast(message) {
+    const oldToast = document.querySelector('.share-toast');
+    if (oldToast) oldToast.remove();
+
+    const toast = document.createElement('div');
+    toast.className = 'share-toast';
+    toast.textContent = message;
+    document.body.appendChild(toast);
+
+    requestAnimationFrame(() => toast.classList.add('is-visible'));
+    window.setTimeout(() => {
+        toast.classList.remove('is-visible');
+        window.setTimeout(() => toast.remove(), 260);
+    }, 1800);
+}

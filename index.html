@@ -1,436 +1,220 @@
-<!DOCTYPE html>
-<html lang="zh-CN" class="scroll-smooth">
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>文明切片 | 听风</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        serif: ['Playfair Display', 'Noto Serif SC', 'Georgia', 'serif'],
-                        sans: ['Inter', 'Noto Sans SC', 'system-ui', 'sans-serif'],
-                    }
-                }
-            }
-        }
-    </script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
-
-    <style>
-        body { font-family: 'Inter', 'Noto Sans SC', sans-serif; }
-        .serif-title { font-family: 'Noto Serif SC', serif; }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="文明切片，听风的个人写作与观察网站，记录技术、文明、市场与日常思考。">
+  <title>文明切片 | 听风</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@500;600;700;900&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%23191813'/%3E%3Ctext x='32' y='43' font-size='34' text-anchor='middle' fill='%23fbfaf6' font-family='serif'%3E%E5%90%AC%3C/text%3E%3C/svg%3E">
+  <link rel="stylesheet" href="style.css">
 </head>
-<body class="bg-zinc-50 text-zinc-800 antialiased selection:bg-zinc-200 selection:text-zinc-900">
+<body class="home-page">
+  <nav class="nav" aria-label="主导航">
+    <div class="nav-container">
+      <a href="index.html" class="logo">文明切片</a>
+      <div class="nav-links">
+        <a href="#essays" class="nav-link">文章</a>
+        <a href="#market" class="nav-link">市场日报</a>
+        <a href="#signals" class="nav-link">资讯切片</a>
+        <a href="ai-hub.html" class="nav-link">AI 启动台</a>
+        <a href="about.html" class="nav-link">关于</a>
+      </div>
+    </div>
+  </nav>
 
-    <nav class="sticky top-0 z-50 backdrop-blur-md bg-white/70 border-b border-zinc-100 transition-all duration-300">
-        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
-            <a href="#" class="serif-title text-xl font-bold tracking-wider text-zinc-950 hover:opacity-80 transition-opacity">
-                文明切片
-            </a>
-            <div class="hidden md:flex items-center space-x-8 text-sm font-medium text-zinc-600">
-                <a href="#articles" class="hover:text-zinc-950 transition-colors">文章</a>
-                <a href="#market" class="hover:text-zinc-950 transition-colors">市场资讯</a>
-                <a href="#news" class="hover:text-zinc-950 transition-colors">热门资讯</a>
-                <a href="#ai-hub" class="hover:text-zinc-950 transition-colors">AI 启动�?/a>
-                <a href="#about" class="hover:text-zinc-950 transition-colors">关于</a>
-            </div>
-            <div class="md:hidden flex items-center">
-                <a href="#about" class="text-xs bg-zinc-900 text-white px-3 py-1.5 rounded-full font-medium">关于作�?/a>
-            </div>
+  <header class="home-hero">
+    <div class="hero-layout">
+      <div class="hero-copy reveal-on-scroll">
+        <p class="hero-note">听风的独立写作与观察</p>
+        <h1>文明切片</h1>
+        <p class="hero-lede">把时代拆成可以阅读的薄片：技术如何改变生活，市场如何映照情绪，历史又怎样在今天回声。</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#essays">开始阅读</a>
+          <a class="btn btn-ghost" href="ai-hub.html">进入 AI 启动台</a>
         </div>
-    </nav>
-
-    <header class="relative overflow-hidden py-20 md:py-32 border-b border-zinc-100 bg-gradient-to-b from-white to-zinc-50">
-        <div class="absolute inset-0 opacity-30 bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [background-size:16px_16px]"></div>
-        <div class="relative max-w-4xl mx-auto px-4 text-center">
-            <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium bg-zinc-100 text-zinc-800 mb-6">
-                <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
-                听风的独立空�?            </span>
-            <h1 class="serif-title text-4xl md:text-6xl font-bold tracking-tight text-zinc-950 leading-tight">
-                文明切片
-            </h1>
-            <p class="mt-6 text-lg md:text-xl text-zinc-500 font-light max-w-2xl mx-auto leading-relaxed">
-                记录时代的碎片，思考文明的脉络
-            </p>
-            <div class="mt-8 flex justify-center items-center gap-3 text-sm text-zinc-400">
-                <span>作者：听风</span>
-                <span class="w-1 h-1 rounded-full bg-zinc-300"></span>
-                <span>自由写作�?· 独立观察�?/span>
-            </div>
+      </div>
+      <aside class="editor-card reveal-on-scroll" aria-label="编辑手记">
+        <div class="editor-card-top">
+          <span>ISSUE 2026</span>
+          <span>PERSONAL JOURNAL</span>
         </div>
-    </header>
+        <p>写作不是结论的展览，而是把混沌慢慢磨成可以被讨论的形状。</p>
+        <div class="editor-signature">
+          <span>听风</span>
+          <small>自由写作者 / 独立观察者</small>
+        </div>
+      </aside>
+    </div>
+  </header>
 
-    <main id="articles" class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
-        <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 border-b border-zinc-200 pb-4">
-            <div>
-                <h2 class="serif-title text-2xl md:text-3xl font-bold text-zinc-950">精选文�?/h2>
-                <p class="text-sm text-zinc-400 mt-1">深度思考与时代解构</p>
-            </div>
-            <span class="text-xs text-zinc-400 mt-2 md:mt-0 font-mono">8 篇精选内�?/span>
+  <main>
+    <section id="essays" class="section home-section">
+      <div class="container">
+        <div class="section-kicker">精选文章</div>
+        <div class="section-heading split-heading">
+          <h2>从历史、人文到技术生活</h2>
+          <p>少一点即时反应，多一点把问题放回长时段里的耐心。</p>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <article class="group bg-white rounded-2xl border border-zinc-100 p-6 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between">
-                <div>
-                    <time class="text-xs font-mono text-zinc-400 block mb-3">2026.05.20</time>
-                    <h3 class="serif-title text-lg font-bold text-zinc-900 group-hover:text-indigo-600 transition-colors line-clamp-2 leading-snug">
-                        中国历史给我们的当代启示
-                    </h3>
-                    <p class="text-zinc-500 text-sm mt-3 line-clamp-3 leading-relaxed">
-                        所谓的前所未有的大变局，拆开来细看，每一个零件历史上都演过无数遍了。技术在变，工具在变，但人性从来没变过�?                    </p>
-                </div>
-                <div class="mt-6 pt-4 border-t border-zinc-50 flex items-center justify-between">
-                    <a href="article-history-lessons.html" class="text-xs font-medium text-zinc-900 hover:text-indigo-600 transition-colors flex items-center">
-                        <span>阅读全文</span>
-                        <svg class="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
-                    </a>
-                    <button onclick="shareContent('中国历史给我们的当代启示', 'article-history-lessons.html')" class="text-zinc-400 hover:text-zinc-600 transition-colors p-1" title="分享">
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z"></path></svg>
-                    </button>
-                </div>
-            </article>
-
-            <article class="group bg-white rounded-2xl border border-zinc-100 p-6 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between">
-                <div>
-                    <time class="text-xs font-mono text-zinc-400 block mb-3">2026.05.19</time>
-                    <h3 class="serif-title text-lg font-bold text-zinc-900 group-hover:text-indigo-600 transition-colors line-clamp-2 leading-snug">
-                        数字时代的注意力危机
-                    </h3>
-                    <p class="text-zinc-500 text-sm mt-3 line-clamp-3 leading-relaxed">
-                        我们的注意力正在被切成碎末，而你甚至意识不到它在发生。这是这个时代最隐蔽也最严重的一场危机�?                    </p>
-                </div>
-                <div class="mt-6 pt-4 border-t border-zinc-50 flex items-center justify-between">
-                    <a href="article-attention-crisis.html" class="text-xs font-medium text-zinc-900 hover:text-indigo-600 transition-colors flex items-center">
-                        <span>阅读全文</span>
-                        <svg class="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
-                    </a>
-                    <button onclick="shareContent('数字时代的注意力危机', 'article-attention-crisis.html')" class="text-zinc-400 hover:text-zinc-600 transition-colors p-1" title="分享">
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z"></path></svg>
-                    </button>
-                </div>
-            </article>
-
-            <article class="group bg-white rounded-2xl border border-zinc-100 p-6 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between">
-                <div>
-                    <time class="text-xs font-mono text-zinc-400 block mb-3">2026.05.18</time>
-                    <h3 class="serif-title text-lg font-bold text-zinc-900 group-hover:text-indigo-600 transition-colors line-clamp-2 leading-snug">
-                        AI时代普通人怎么更好活着
-                    </h3>
-                    <p class="text-zinc-500 text-sm mt-3 line-clamp-3 leading-relaxed">
-                        你不需要懂算法，不需要会写代码，你只需要，把AI当成一个刚入职的实习生，就够了�?                    </p>
-                </div>
-                <a href="article-ai-life.html" class="mt-6 pt-4 border-t border-zinc-50 flex items-center text-xs font-medium text-zinc-900 group-hover:text-indigo-600 transition-colors">
-                    <span>阅读全文</span>
-                    <svg class="w-3 h-3 ml-1 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
-                </a>
-            </article>
-
-            <article class="group bg-white rounded-2xl border border-zinc-100 p-6 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between">
-                <div>
-                    <time class="text-xs font-mono text-zinc-400 block mb-3">2026.05.12</time>
-                    <h3 class="serif-title text-lg font-bold text-zinc-900 group-hover:text-indigo-600 transition-colors line-clamp-2 leading-snug">
-                        人工智能与人文精神的未来
-                    </h3>
-                    <p class="text-zinc-500 text-sm mt-3 line-clamp-3 leading-relaxed">
-                        当AI能够创作诗歌、绘画甚至音乐，人类独有的创造力是否还有意义�?                    </p>
-                </div>
-                <a href="article-ai-humanities.html" class="mt-6 pt-4 border-t border-zinc-50 flex items-center text-xs font-medium text-zinc-900 group-hover:text-indigo-600 transition-colors">
-                    <span>阅读全文</span>
-                    <svg class="w-3 h-3 ml-1 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
-                </a>
-            </article>
-
-            <article class="group bg-white rounded-2xl border border-zinc-100 p-6 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between">
-                <div>
-                    <time class="text-xs font-mono text-zinc-400 block mb-3">2026.05.05</time>
-                    <h3 class="serif-title text-lg font-bold text-zinc-900 group-hover:text-indigo-600 transition-colors line-clamp-2 leading-snug">
-                        城市孤独症候群
-                    </h3>
-                    <p class="text-zinc-500 text-sm mt-3 line-clamp-3 leading-relaxed">
-                        在最拥挤的都市，人们却感受着前所未有的孤独。连接的悖论如何解构现代生活�?                    </p>
-                </div>
-                <a href="article-urban-loneliness.html" class="mt-6 pt-4 border-t border-zinc-50 flex items-center text-xs font-medium text-zinc-900 group-hover:text-indigo-600 transition-colors">
-                    <span>阅读全文</span>
-                    <svg class="w-3 h-3 ml-1 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
-                </a>
-            </article>
-
-            <article class="group bg-white rounded-2xl border border-zinc-100 p-6 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between">
-                <div>
-                    <time class="text-xs font-mono text-zinc-400 block mb-3">2026.04.28</time>
-                    <h3 class="serif-title text-lg font-bold text-zinc-900 group-hover:text-indigo-600 transition-colors line-clamp-2 leading-snug">
-                        慢阅读的艺术
-                    </h3>
-                    <p class="text-zinc-500 text-sm mt-3 line-clamp-3 leading-relaxed">
-                        重新发现纸质书的质感，在快节奏生活中找回沉浸式阅读的宁静�?                    </p>
-                </div>
-                <a href="article-slow-reading.html" class="mt-6 pt-4 border-t border-zinc-50 flex items-center text-xs font-medium text-zinc-900 group-hover:text-indigo-600 transition-colors">
-                    <span>阅读全文</span>
-                    <svg class="w-3 h-3 ml-1 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
-                </a>
-            </article>
-
-            <article class="group bg-white rounded-2xl border border-zinc-100 p-6 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between">
-                <div>
-                    <time class="text-xs font-mono text-zinc-400 block mb-3">2026.04.20</time>
-                    <h3 class="serif-title text-lg font-bold text-zinc-900 group-hover:text-indigo-600 transition-colors line-clamp-2 leading-snug">
-                        技术乐观主义的黄昏
-                    </h3>
-                    <p class="text-zinc-500 text-sm mt-3 line-clamp-3 leading-relaxed">
-                        硅谷神话正在褪色，我们需要重新审视技术与人类社会的复杂关系�?                    </p>
-                </div>
-                <a href="article-tech-optimism.html" class="mt-6 pt-4 border-t border-zinc-50 flex items-center text-xs font-medium text-zinc-900 group-hover:text-indigo-600 transition-colors">
-                    <span>阅读全文</span>
-                    <svg class="w-3 h-3 ml-1 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
-                </a>
-            </article>
-
-            <article class="group bg-white rounded-2xl border border-zinc-100 p-6 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between">
-                <div>
-                    <time class="text-xs font-mono text-zinc-400 block mb-3">2026.04.15</time>
-                    <h3 class="serif-title text-lg font-bold text-zinc-900 group-hover:text-indigo-600 transition-colors line-clamp-2 leading-snug">
-                        记忆的考古�?                    </h3>
-                    <p class="text-zinc-500 text-sm mt-3 line-clamp-3 leading-relaxed">
-                        我们如何记住，又如何遗忘？数字时代的记忆方式正在重塑我们的身份认同�?                    </p>
-                </div>
-                <a href="article-memory-archaeology.html" class="mt-6 pt-4 border-t border-zinc-50 flex items-center text-xs font-medium text-zinc-900 group-hover:text-indigo-600 transition-colors">
-                    <span>阅读全文</span>
-                    <svg class="w-3 h-3 ml-1 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
-                </a>
-            </article>
-        </div>
-    </main>
-
-    <section class="bg-zinc-50 border-b border-zinc-100 py-16 md:py-24">
-        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-12 gap-12">
-
-            <div id="market" class="lg:col-span-5">
-                <div class="mb-6">
-                    <h2 class="serif-title text-xl font-bold text-zinc-900">每日市场资讯</h2>
-                    <p class="text-xs text-zinc-400 mt-1">追踪新质生产力与宏观主线</p>
-                </div>
-
-                <div class="space-y-4">
-                    <div class="bg-white p-4 rounded-xl border border-zinc-200 hover:border-zinc-300 transition-all">
-                        <div class="flex justify-between items-start mb-2">
-                            <span class="text-[11px] text-zinc-400 font-mono">2026.05.19</span>
-                            <span class="text-[10px] px-2 py-0.5 bg-amber-100/80 text-amber-700 rounded">最新日�?/span>
-                        </div>
-                        <h4 class="font-semibold text-zinc-800 text-sm">每日投资市场日报</h4>
-                        <p class="text-xs text-zinc-500 mt-2 leading-relaxed">
-                            北向资金净流入42.68亿元，电力改革、脑机接口成为新质生产力主线，国务院两大万亿规划落地�?                        </p>
-                        <div class="mt-3 pt-3 border-t border-zinc-100 flex items-center justify-between">
-                            <a href="market-daily-2026-05-19.html" class="text-xs text-indigo-600 font-medium hover:text-indigo-700">阅读全文 �?/a>
-                            <button onclick="shareContent('每日投资市场日报 - 2026.05.19', 'market-daily-2026-05-19.html')" class="text-zinc-400 hover:text-zinc-600 transition-colors p-1" title="分享">
-                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z"></path></svg>
-                            </button>
-                        </div>
-                    </div>
-
-                    <div class="bg-white p-4 rounded-xl border border-zinc-200 hover:border-zinc-300 transition-all">
-                        <div class="mb-2">
-                            <span class="text-[11px] text-zinc-400 font-mono">2026.05.18</span>
-                        </div>
-                        <h4 class="font-semibold text-zinc-800 text-sm">每日投资市场日报</h4>
-                        <p class="text-xs text-zinc-500 mt-2 leading-relaxed">
-                            科创50领涨2.51%，存储芯片超级周期确立，板块涨超8%，三重大逻辑支撑最强主线�?                        </p>
-                        <div class="mt-3 pt-3 border-t border-zinc-100 flex items-center justify-between">
-                            <a href="market-daily-2026-05-18.html" class="text-xs text-indigo-600 font-medium hover:text-indigo-700">阅读全文 �?/a>
-                            <button onclick="shareContent('每日投资市场日报 - 2026.05.18', 'market-daily-2026-05-18.html')" class="text-zinc-400 hover:text-zinc-600 transition-colors p-1" title="分享">
-                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z"></path></svg>
-                            </button>
-                        </div>
-                    </div>
-                </div>
+        <div class="essay-board">
+          <article class="essay-feature article-card article-card-featured reveal-on-scroll">
+            <time>2026.05.20</time>
+            <h3>中国历史给我们的当代启示</h3>
+            <p>所谓前所未有的大变局，拆开来看，每一个零件历史上都演过无数遍。技术在变，工具在变，但人性从来没有变过。</p>
+            <div class="card-meta">
+              <span>历史观察</span>
+              <a href="article-history-lessons.html">阅读全文</a>
             </div>
+          </article>
 
-            <div id="news" class="lg:col-span-7">
-                <div class="mb-6">
-                    <h2 class="serif-title text-xl font-bold text-zinc-900">热门资讯</h2>
-                    <p class="text-xs text-zinc-400 mt-1">全球视野下的观点快讯</p>
-                </div>
-
-                <div class="bg-white rounded-xl border border-zinc-200 divide-y divide-zinc-100">
-                    <div class="p-4 flex items-start gap-3 hover:bg-zinc-50 transition-colors">
-                        <span class="shrink-0 text-[11px] px-2 py-0.5 bg-blue-100 text-blue-600 rounded mt-0.5">科技</span>
-                        <div class="flex-1">
-                            <h5 class="text-sm text-zinc-800">OpenAI 完成 1220 亿美元融资，估值达 8520 亿美元拟下半年上�?/h5>
-                            <div class="flex items-center justify-between mt-1">
-                                <span class="text-[11px] text-zinc-400">今日</span>
-                                <button onclick="shareContent('OpenAI 完成 1220 亿美元融资，估值达 8520 亿美元拟下半年上�?, window.location.href)" class="text-zinc-400 hover:text-zinc-600 transition-colors p-1" title="分享">
-                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z"></path></svg>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="p-4 flex items-start gap-3 hover:bg-zinc-50 transition-colors">
-                        <span class="shrink-0 text-[11px] px-2 py-0.5 bg-purple-100 text-purple-600 rounded mt-0.5">AI</span>
-                        <div class="flex-1">
-                            <h5 class="text-sm text-zinc-800">Anthropic Claude Mythos 自主发现数千零日漏洞，触发全球安全联�?/h5>
-                            <div class="flex items-center justify-between mt-1">
-                                <span class="text-[11px] text-zinc-400">今日</span>
-                                <button onclick="shareContent('Anthropic Claude Mythos 自主发现数千零日漏洞，触发全球安全联�?, window.location.href)" class="text-zinc-400 hover:text-zinc-600 transition-colors p-1" title="分享">
-                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z"></path></svg>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="p-4 flex items-start gap-3 hover:bg-zinc-50 transition-colors">
-                        <span class="shrink-0 text-[11px] px-2 py-0.5 bg-emerald-100 text-emerald-600 rounded mt-0.5">芯片</span>
-                        <div class="flex-1">
-                            <h5 class="text-sm text-zinc-800">Cerebras IPO 首日暴涨 89%，市值破千亿美元�?2026 最大科技 IPO</h5>
-                            <div class="flex items-center justify-between mt-1">
-                                <span class="text-[11px] text-zinc-400">今日</span>
-                                <button onclick="shareContent('Cerebras IPO 首日暴涨 89%，市值破千亿美元�?2026 最大科技 IPO', window.location.href)" class="text-zinc-400 hover:text-zinc-600 transition-colors p-1" title="分享">
-                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z"></path></svg>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="p-4 flex items-start gap-3 hover:bg-zinc-50 transition-colors">
-                        <span class="shrink-0 text-[11px] px-2 py-0.5 bg-amber-100 text-amber-600 rounded mt-0.5">中国</span>
-                        <div class="flex-1">
-                            <h5 class="text-sm text-zinc-800">DeepSeek V4 全面运行华为昇腾，标志国产算力里程碑</h5>
-                            <div class="flex items-center justify-between mt-1">
-                                <span class="text-[11px] text-zinc-400">今日</span>
-                                <button onclick="shareContent('DeepSeek V4 全面运行华为昇腾，标志国产算力里程碑', window.location.href)" class="text-zinc-400 hover:text-zinc-600 transition-colors p-1" title="分享">
-                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z"></path></svg>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="p-4 flex items-start gap-3 hover:bg-zinc-50 transition-colors">
-                        <span class="shrink-0 text-[11px] px-2 py-0.5 bg-amber-100 text-amber-600 rounded mt-0.5">艺术</span>
-                        <div class="flex-1">
-                            <h5 class="text-sm text-zinc-800">数字艺术首次进入苏富比当代艺术夜场拍�?/h5>
-                            <div class="flex items-center justify-between mt-1">
-                                <span class="text-[11px] text-zinc-400">2天前</span>
-                                <button onclick="shareContent('数字艺术首次进入苏富比当代艺术夜场拍�?, window.location.href)" class="text-zinc-400 hover:text-zinc-600 transition-colors p-1" title="分享">
-                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z"></path></svg>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
+          <div class="essay-list">
+            <article class="essay-row article-card reveal-on-scroll">
+              <time>2026.05.19</time>
+              <div>
+                <h3>数字时代的注意力危机</h3>
+                <p>我们的注意力正在被切成碎片，而你甚至意识不到它在发生。</p>
+              </div>
+              <a href="article-attention-crisis.html" aria-label="阅读数字时代的注意力危机">阅读</a>
+            </article>
+            <article class="essay-row article-card reveal-on-scroll">
+              <time>2026.05.18</time>
+              <div>
+                <h3>AI 时代普通人怎么更好活着</h3>
+                <p>你不必成为工程师，也可以把 AI 变成日常能力的放大器。</p>
+              </div>
+              <a href="article-ai-life.html" aria-label="阅读 AI 时代普通人怎么更好活着">阅读</a>
+            </article>
+            <article class="essay-row article-card reveal-on-scroll">
+              <time>2026.05.12</time>
+              <div>
+                <h3>人工智能与人文精神的未来</h3>
+                <p>当机器也能创作，人类独有的价值是否需要重新定义？</p>
+              </div>
+              <a href="article-ai-humanities.html" aria-label="阅读人工智能与人文精神的未来">阅读</a>
+            </article>
+          </div>
         </div>
+
+        <div class="article-grid compact-grid">
+          <article class="mini-essay article-card reveal-on-scroll">
+            <time>2026.05.05</time>
+            <h3>城市孤独症候群</h3>
+            <p>在最拥挤的都市，人们却感受着前所未有的孤独。</p>
+            <a href="article-urban-loneliness.html">阅读全文</a>
+          </article>
+          <article class="mini-essay article-card reveal-on-scroll">
+            <time>2026.04.28</time>
+            <h3>慢阅读的艺术</h3>
+            <p>在快节奏生活中，重新找回沉浸式阅读的宁静。</p>
+            <a href="article-slow-reading.html">阅读全文</a>
+          </article>
+          <article class="mini-essay article-card reveal-on-scroll">
+            <time>2026.04.20</time>
+            <h3>技术乐观主义的黄昏</h3>
+            <p>我们需要重新审视技术与人类社会之间的复杂关系。</p>
+            <a href="article-tech-optimism.html">阅读全文</a>
+          </article>
+          <article class="mini-essay article-card reveal-on-scroll">
+            <time>2026.04.15</time>
+            <h3>记忆的考古学</h3>
+            <p>我们如何记住，又如何遗忘？数字时代正在重塑身份认同。</p>
+            <a href="article-memory-archaeology.html">阅读全文</a>
+          </article>
+        </div>
+      </div>
     </section>
 
-    <section id="ai-hub" class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
-        <div class="relative rounded-3xl bg-gradient-to-br from-zinc-900 via-zinc-950 to-neutral-900 text-white p-8 md:p-14 overflow-hidden shadow-xl">
-            <div class="absolute -right-10 -top-10 w-40 h-40 bg-indigo-600/20 rounded-full blur-3xl"></div>
-            <div class="absolute -left-10 -bottom-10 w-40 h-40 bg-emerald-600/10 rounded-full blur-3xl"></div>
-
-            <div class="relative max-w-2xl space-y-6">
-                <div class="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-white/10 backdrop-blur-md border border-white/10 text-xl">
-                    🚀
-                </div>
-                <h3 class="serif-title text-2xl md:text-4xl font-bold tracking-tight">
-                    AI 启动�?                </h3>
-                <p class="text-zinc-400 text-sm md:text-base font-light leading-relaxed">
-                    对话 · 图像 · 视频 · 3D · 模型平台，一站直达。汇�?70+ 主流 AI 工具，支持一键批量打开。为创作者赋能�?                </p>
-                <div class="pt-4">
-                    <a href="ai-hub.html" class="group inline-flex items-center justify-center px-6 py-3 bg-white text-zinc-950 text-sm font-medium rounded-xl hover:bg-zinc-100 transition-all shadow-md shadow-black/20">
-                        <span>立即进入主页</span>
-                        <svg class="w-4 h-4 ml-1.5 transform group-hover:translate-x-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
-                    </a>
-                </div>
-            </div>
+    <section id="market" class="section section-ink">
+      <div class="container market-layout">
+        <div class="market-intro reveal-on-scroll">
+          <div class="section-kicker">市场日报</div>
+          <h2>把数字背后的情绪读出来</h2>
+          <p>每天追踪资金、产业与政策脉络，不做噪音搬运，只保留值得继续想的线索。</p>
         </div>
+        <div class="market-feed">
+          <article class="market-card reveal-on-scroll">
+            <div class="market-date">2026.05.19 <span>最新</span></div>
+            <h3>每日投资市场日报</h3>
+            <p>北向资金净流入 42.68 亿元，电力改革、脑机接口成为新质生产力主线，国务院两大万亿规划落地。</p>
+            <div class="card-meta">
+              <button type="button" onclick="shareContent('每日投资市场日报 - 2026.05.19', 'market-daily-2026-05-19.html')">分享</button>
+              <a href="market-daily-2026-05-19.html">阅读全文</a>
+            </div>
+          </article>
+          <article class="market-card reveal-on-scroll">
+            <div class="market-date">2026.05.18</div>
+            <h3>每日投资市场日报</h3>
+            <p>科创 50 领涨，存储芯片超级周期确立，板块涨超 8%，三重逻辑支撑最强主线。</p>
+            <div class="card-meta">
+              <button type="button" onclick="shareContent('每日投资市场日报 - 2026.05.18', 'market-daily-2026-05-18.html')">分享</button>
+              <a href="market-daily-2026-05-18.html">阅读全文</a>
+            </div>
+          </article>
+        </div>
+      </div>
     </section>
 
-    <section id="about" class="border-t border-zinc-200 bg-white py-16 md:py-24">
-        <div class="max-w-4xl mx-auto px-4 grid grid-cols-1 md:grid-cols-12 gap-10 items-center">
-
-            <div class="md:col-span-7 space-y-4">
-                <div class="flex items-center gap-4">
-                    <div class="w-14 h-14 rounded-full bg-zinc-900 flex items-center justify-center text-white text-lg font-bold serif-title">
-                        �?                    </div>
-                    <div>
-                        <h3 class="serif-title text-xl font-bold text-zinc-900">听风</h3>
-                        <p class="text-xs text-zinc-400">自由写作�?/ 独立观察�?/p>
-                    </div>
-                </div>
-                <p class="text-zinc-500 text-sm leading-relaxed pt-2">
-                    在喧嚣的时代保持清醒，用文字记录思考的痕迹。相信文明的进步源于每一个独立的灵魂。欢迎通过下方渠道共同交流探讨�?                </p>
-                <div class="pt-2">
-                    <a href="about.html" class="text-xs font-medium text-indigo-600 hover:text-indigo-700 inline-flex items-center">
-                        了解更多关于我的故事 &rarr;
-                    </a>
-                </div>
-            </div>
-
-            <div class="md:col-span-5 grid grid-cols-2 gap-4">
-                <div class="border border-dashed border-zinc-200 rounded-2xl p-4 text-center bg-zinc-50 hover:bg-zinc-100/50 transition-colors flex flex-col items-center justify-center aspect-square group">
-                    <img src="qrcode.jpg" alt="微信公众号二维码" class="w-20 h-20 object-cover rounded-lg mb-2">
-                    <span class="text-xs font-medium text-zinc-700 block">微信公众�?/span>
-                </div>
-
-                <div class="border border-dashed border-zinc-200 rounded-2xl p-4 text-center bg-zinc-50 hover:bg-zinc-100/50 transition-colors flex flex-col items-center justify-center aspect-square group">
-                    <img src="douyin-qrcode.jpg" alt="抖音账号二维�? class="w-20 h-20 object-cover rounded-lg mb-2">
-                    <span class="text-xs font-medium text-zinc-700 block">抖音账号</span>
-                </div>
-            </div>
-
+    <section id="signals" class="section home-section">
+      <div class="container signal-layout">
+        <div>
+          <div class="section-kicker">资讯切片</div>
+          <h2>今日值得留意的几条线索</h2>
         </div>
+        <div class="signal-list">
+          <div class="news-item reveal-on-scroll"><span class="news-category">科技</span><p class="news-title">OpenAI 完成新一轮融资，AI 基础设施竞争继续升温。</p><span class="news-time">今日</span></div>
+          <div class="news-item reveal-on-scroll"><span class="news-category">AI</span><p class="news-title">Anthropic 安全研究引发模型自主发现漏洞的新讨论。</p><span class="news-time">今日</span></div>
+          <div class="news-item reveal-on-scroll"><span class="news-category">芯片</span><p class="news-title">Cerebras IPO 表现强劲，算力叙事再次进入资本视野。</p><span class="news-time">今日</span></div>
+          <div class="news-item reveal-on-scroll"><span class="news-category">中国</span><p class="news-title">国产算力生态继续推进，软硬件协同成为长期主题。</p><span class="news-time">今日</span></div>
+          <div class="news-item reveal-on-scroll"><span class="news-category">艺术</span><p class="news-title">数字艺术进入传统拍卖夜场，创作与收藏的边界继续移动。</p><span class="news-time">2 天前</span></div>
+        </div>
+      </div>
     </section>
 
-    <footer class="bg-zinc-50 border-t border-zinc-100 py-8 text-center text-xs text-zinc-400 font-mono">
-        <p>&copy; 2026 文明切片 · 听风. All Rights Reserved.</p>
-    </footer>
+    <section class="section ai-ramp">
+      <div class="container">
+        <div class="ai-panel reveal-on-scroll">
+          <div>
+            <div class="section-kicker">AI 启动台</div>
+            <h2>把常用 AI 工具收进一个清爽入口</h2>
+            <p>对话、图像、视频、3D 与模型平台，一站直达。适合写作者、创作者和所有想降低工具摩擦的人。</p>
+          </div>
+          <a class="btn btn-primary" href="ai-hub.html">进入启动台</a>
+        </div>
+      </div>
+    </section>
 
-    <script>
-        function shareContent(title, url) {
-            const fullUrl = new URL(url, window.location.origin).href;
-            const shareText = title + '\n\n' + fullUrl;
+    <section id="about" class="section about-strip">
+      <div class="container about-layout">
+        <div class="about-copy reveal-on-scroll">
+          <div class="author-mark">听</div>
+          <div>
+            <div class="section-kicker">关于听风</div>
+            <h2>在喧哗里保持清醒</h2>
+            <p>我相信文明的进步，来自每一个愿意独立思考、认真表达的人。这里保存我的文章、观察和一些实用工具。</p>
+            <a href="about.html">了解更多</a>
+          </div>
+        </div>
+        <div class="qr-grid reveal-on-scroll">
+          <figure>
+            <img src="qrcode.jpg" alt="微信公众号二维码">
+            <figcaption>微信公众号</figcaption>
+          </figure>
+          <figure>
+            <img src="douyin-qrcode.jpg" alt="抖音账号二维码">
+            <figcaption>抖音账号</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+  </main>
 
-            if (navigator.share) {
-                navigator.share({
-                    title: title,
-                    text: title,
-                    url: fullUrl
-                }).catch(() => copyToClipboard(shareText));
-            } else {
-                copyToClipboard(shareText);
-            }
-        }
+  <footer class="footer">
+    <p class="footer-text">© 2026 文明切片 · 听风. All Rights Reserved.</p>
+  </footer>
 
-        function copyToClipboard(text) {
-            navigator.clipboard.writeText(text).then(() => {
-                showToast('链接已复制到剪贴�?);
-            }).catch(() => {
-                const textarea = document.createElement('textarea');
-                textarea.value = text;
-                document.body.appendChild(textarea);
-                textarea.select();
-                document.execCommand('copy');
-                document.body.removeChild(textarea);
-                showToast('链接已复制到剪贴�?);
-            });
-        }
-
-        function showToast(message) {
-            const toast = document.createElement('div');
-            toast.className = 'fixed bottom-8 left-1/2 transform -translate-x-1/2 bg-zinc-800 text-white px-4 py-2 rounded-lg text-sm shadow-lg z-50 transition-opacity duration-300';
-            toast.textContent = message;
-            document.body.appendChild(toast);
-            setTimeout(() => {
-                toast.style.opacity = '0';
-                setTimeout(() => document.body.removeChild(toast), 300);
-            }, 2000);
-        }
-    </script>
-
+  <script src="script.js"></script>
 </body>
 </html>
