@@ -418,14 +418,21 @@ body {
     margin-bottom: 24px;
 }
 
-.wechat-qrcode {
+.qrcode-container {
     margin: 32px 0;
+    display: flex;
+    justify-content: center;
+    gap: 48px;
+    flex-wrap: wrap;
+}
+
+.qrcode-item {
     text-align: center;
 }
 
-.wechat-qrcode img {
-    width: 180px;
-    height: 180px;
+.qrcode-item img {
+    width: 160px;
+    height: 160px;
     border-radius: 12px;
     box-shadow: 0 4px 20px rgba(44, 36, 27, 0.1);
     margin-bottom: 12px;
