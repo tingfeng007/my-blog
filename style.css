@@ -712,108 +712,71 @@ a {
     background: #f7f5ee;
 }
 
-.report-hero {
-    padding: 132px 28px 54px;
-    background:
-        linear-gradient(90deg, rgba(25, 24, 19, 0.025) 1px, transparent 1px),
-        linear-gradient(180deg, rgba(25, 24, 19, 0.02) 1px, transparent 1px),
-        var(--bg-primary);
-    background-size: 48px 48px;
-    border-bottom: 1px solid var(--border);
-}
-
-.report-hero-inner {
-    width: min(920px, 100%);
-    margin: 0 auto;
-}
-
-.report-back {
-    display: inline-block;
-    margin-bottom: 30px;
+.report-toolbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    width: min(820px, 100%);
+    margin: 0 auto 18px;
     color: var(--text-muted);
     font-size: 13px;
+}
+
+.report-toolbar a {
+    color: var(--accent);
     font-weight: 700;
     text-decoration: none;
 }
 
-.report-back:hover {
-    color: var(--accent);
-}
-
-.report-hero h1 {
-    margin-top: 12px;
-    font-family: var(--font-serif);
-    font-size: clamp(42px, 7vw, 84px);
-    line-height: 1.08;
-    font-weight: 900;
-}
-
-.report-hero p:not(.section-kicker) {
-    margin-top: 14px;
-    color: var(--text-secondary);
-    font-size: 18px;
-}
-
-.report-actions {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 14px;
-    margin-top: 30px;
-}
-
-.report-actions button {
-    cursor: pointer;
-    font-family: var(--font-sans);
-}
-
 .report-shell {
-    padding: 54px 28px 86px;
+    padding: 94px 28px 72px;
 }
 
 .report-document {
-    width: min(920px, 100%);
+    width: min(820px, 100%);
     margin: 0 auto;
-    padding: clamp(28px, 6vw, 72px);
+    padding: clamp(28px, 5vw, 54px);
     background: var(--surface-strong);
     border: 1px solid var(--border);
-    box-shadow: 0 24px 80px rgba(36, 32, 24, 0.1);
+    box-shadow: 0 16px 54px rgba(36, 32, 24, 0.08);
 }
 
 .report-document > * + * {
-    margin-top: 18px;
+    margin-top: 12px;
 }
 
 .report-title {
     font-family: var(--font-serif);
-    font-size: clamp(30px, 4vw, 48px);
-    line-height: 1.22;
+    font-size: clamp(22px, 2.7vw, 30px);
+    line-height: 1.28;
     font-weight: 900;
-    padding-bottom: 22px;
-    border-bottom: 2px solid var(--text-primary);
+    padding-bottom: 14px;
+    border-bottom: 1px solid var(--text-primary);
 }
 
 .report-h2 {
-    margin-top: 44px;
-    padding-top: 26px;
+    margin-top: 30px;
+    padding-top: 18px;
     border-top: 1px solid var(--border);
     font-family: var(--font-serif);
-    font-size: clamp(25px, 3vw, 34px);
+    font-size: clamp(18px, 2.2vw, 24px);
     line-height: 1.35;
     font-weight: 900;
 }
 
 .report-h3 {
-    margin-top: 30px;
+    margin-top: 20px;
     font-family: var(--font-serif);
-    font-size: 23px;
+    font-size: 18px;
     line-height: 1.42;
     font-weight: 800;
     color: var(--accent);
 }
 
 .report-h4 {
-    margin-top: 24px;
-    font-size: 17px;
+    margin-top: 18px;
+    font-size: 15px;
     line-height: 1.5;
     font-weight: 800;
     color: var(--accent-cool);
@@ -822,24 +785,24 @@ a {
 .report-body,
 .report-meta-line {
     color: var(--text-primary);
-    font-size: 16px;
-    line-height: 2;
+    font-size: 13.5px;
+    line-height: 1.9;
 }
 
 .report-meta-line {
     color: var(--text-muted);
-    font-size: 14px;
-    line-height: 1.7;
+    font-size: 12px;
+    line-height: 1.6;
 }
 
 .emphasis-line {
-    padding: 14px 18px;
+    padding: 10px 14px;
     background: rgba(30, 111, 112, 0.06);
-    border-left: 4px solid var(--accent-cool);
+    border-left: 3px solid var(--accent-cool);
 }
 
 .report-callout {
-    padding: 22px 24px;
+    padding: 16px 18px;
     background: linear-gradient(135deg, rgba(176, 68, 47, 0.08), rgba(30, 111, 112, 0.06));
     border: 1px solid var(--border);
 }
@@ -847,7 +810,7 @@ a {
 .report-callout h3,
 .report-two-col h3 {
     font-family: var(--font-serif);
-    font-size: 20px;
+    font-size: 16px;
     line-height: 1.45;
     font-weight: 900;
 }
@@ -857,7 +820,8 @@ a {
     margin-top: 12px;
     padding-left: 1.2em;
     color: var(--text-secondary);
-    line-height: 1.9;
+    line-height: 1.8;
+    font-size: 14px;
 }
 
 .report-table-wrap {
@@ -868,19 +832,19 @@ a {
 .report-table {
     width: 100%;
     border-collapse: collapse;
-    min-width: 560px;
+    min-width: 520px;
     background: var(--surface);
 }
 
 .report-table th,
 .report-table td {
-    padding: 13px 15px;
+    padding: 9px 11px;
     border-bottom: 1px solid var(--border);
     border-right: 1px solid var(--border);
     text-align: left;
     vertical-align: middle;
-    font-size: 14px;
-    line-height: 1.65;
+    font-size: 12px;
+    line-height: 1.55;
 }
 
 .report-table th {
@@ -901,18 +865,18 @@ a {
 .report-two-col {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 18px;
+    gap: 12px;
 }
 
 .report-two-col > div {
-    padding: 22px 24px;
+    padding: 14px 16px;
     background: var(--surface);
     border: 1px solid var(--border);
 }
 
 .report-figure {
-    margin: 30px 0;
-    padding: 14px;
+    margin: 18px 0;
+    padding: 10px;
     background: var(--surface);
     border: 1px solid var(--border);
 }
@@ -1119,8 +1083,36 @@ a {
         padding-right: 18px;
     }
 
+    .report-shell {
+        padding-top: 82px;
+    }
+
+    .report-toolbar {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 6px;
+        margin-bottom: 12px;
+    }
+
     .report-document {
-        padding: 24px 18px;
+        padding: 22px 16px;
+    }
+
+    .report-title {
+        font-size: 21px;
+        line-height: 1.32;
+        word-break: keep-all;
+    }
+
+    .report-h2 {
+        font-size: 20px;
+    }
+
+    .report-body,
+    .report-meta-line,
+    .report-callout ul,
+    .report-two-col ul {
+        font-size: 13px;
     }
 
     .report-two-col {
