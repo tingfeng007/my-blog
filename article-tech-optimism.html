@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>技术乐观主义的黄昏 | 文明切片</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&family=Noto+Sans+SC:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--accent), var(--accent-light));
+            z-index: 1000;
+            transition: width 0.1s ease;
+        }
+
+        .article-hero {
+            padding: 140px 32px 60px;
+            text-align: center;
+            position: relative;
+        }
+
+        .article-hero::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--accent), transparent);
+        }
+
+        .article-category {
+            display: inline-block;
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 24px;
+            padding: 6px 14px;
+            background: rgba(184, 134, 11, 0.08);
+            border-radius: 20px;
+        }
+
+        .article-title {
+            font-family: var(--font-serif);
+            font-size: 40px;
+            font-weight: 700;
+            line-height: 1.3;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, var(--text-primary) 0%, var(--accent) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .article-meta {
+            font-size: 14px;
+            color: var(--text-muted);
+            display: flex;
+            justify-content: center;
+            gap: 24px;
+        }
+
+        .article-content {
+            max-width: 720px;
+            margin: 0 auto;
+            padding: 60px 32px 80px;
+        }
+
+        .article-body {
+            font-family: var(--font-sans);
+            font-size: 17px;
+            line-height: 2;
+            color: var(--text-primary);
+        }
+
+        .article-body p {
+            margin-bottom: 24px;
+        }
+
+        .article-author {
+            margin-top: 80px;
+            padding-top: 40px;
+            border-top: 1px solid var(--border);
+            text-align: center;
+        }
+
+        .article-author-name {
+            font-family: var(--font-serif);
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 8px;
+        }
+
+        .article-author-bio {
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+
+        @media (max-width: 768px) {
+            .article-title {
+                font-size: 28px;
+            }
+
+            .article-content {
+                padding: 40px 24px 60px;
+            }
+
+            .article-body {
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="progress-bar" id="progressBar"></div>
+
+    <nav class="nav">
+        <div class="nav-container">
+            <a href="index.html" class="logo">文明切片</a>
+            <div class="nav-links">
+                <a href="index.html#articles" class="nav-link">文章</a>
+                <a href="index.html#market" class="nav-link">市场资讯</a>
+                <a href="index.html#news" class="nav-link">资讯</a>
+                <a href="ai-hub.html" class="nav-link">AI 启动台</a>
+                <a href="about.html" class="nav-link">关于</a>
+            </div>
+        </div>
+    </nav>
+
+    <header class="article-hero">
+        <div class="article-category">科技思考</div>
+        <h1 class="article-title">技术乐观主义的黄昏</h1>
+        <div class="article-meta">
+            <span>听风</span>
+            <span>2026.04.20</span>
+            <span>约 2800 字</span>
+        </div>
+    </header>
+
+    <main class="article-content">
+        <article class="article-body">
+            <p>不知道你有没有发现，最近这几年，大家对科技的态度变了。</p>
+
+            <p>以前我们谈起科技，都是兴奋的，是憧憬的。互联网来了，智能手机来了，AI来了，每一次新的技术出现，我们都觉得，哇，未来就要来了，我们的生活会变得越来越好。</p>
+
+            <p>但现在呢？</p>
+
+            <p>大家谈起科技，更多的是焦虑，是迷茫，甚至是恐惧。</p>
+
+            <p>我们担心自己的工作被AI取代，担心大数据杀熟，担心算法控制我们的思想，担心隐私被泄露，担心科技巨头越来越大，我们越来越渺小。</p>
+
+            <p>技术还是那个技术，但我们看技术的眼光，已经完全不一样了。</p>
+
+            <p>我把这种变化叫做，技术乐观主义的黄昏。</p>
+
+            <p>说真的，我以前是一个坚定的技术乐观主义者。</p>
+
+            <p>我相信科技可以解决一切问题。我相信互联网会让这个世界变得更平等，我相信人工智能会把人类从繁重的劳动中解放出来，我相信我们这一代人会见证人类历史上最伟大的技术革命。</p>
+
+            <p>那时候我觉得，所有反对科技进步的人，都是卢德分子，都是跟不上时代的老古董。</p>
+
+            <p>但这几年，我慢慢开始怀疑了。</p>
+
+            <p>我看到互联网确实让信息传播变得更快了，但也让谣言传播得更快了。我们确实获得了更多的信息，但也变得更难分辨真假了。</p>
+
+            <p>我看到算法确实让我们看到了更多自己感兴趣的内容，但也把我们关进了信息茧房。我们的视野不是变宽了，而是变窄了。我们越来越固执，越来越极端，越来越听不进去不同的意见。</p>
+
+            <p>我看到大数据确实让很多事情变得更高效了，但也让我们每个人都变成了透明人。我们的每一次点击，每一次消费，每一次出行，都被记录下来，被分析，被用来赚钱。</p>
+
+            <p>我看到AI确实越来越强大了，但也让越来越多的人开始担心自己的工作。大家每天都在讨论，什么职业会被AI取代，下一个会不会是我。</p>
+
+            <p>我突然发现，技术给我们带来的，不全是好东西。</p>
+
+            <p>它带来便利的同时，也带来了控制。</p>
+
+            <p>它带来效率的同时，也带来了异化。</p>
+
+            <p>它带来连接的同时，也带来了隔阂。</p>
+
+            <p>我前阵子看了一个特别有意思的纪录片，讲的是硅谷那些大佬们的生活。</p>
+
+            <p>你知道吗？那些发明了智能手机的人，那些创造了社交媒体的人，他们自己是不让孩子用手机的。</p>
+
+            <p>他们把孩子送到没有屏幕的学校，在家里严格限制电子产品的使用时间，他们自己也尽量不用社交媒体。</p>
+
+            <p>你说讽刺不讽刺？</p>
+
+            <p>他们发明了这些东西，让全世界的人沉迷其中，自己却离得远远的。</p>
+
+            <p>就像卖毒品的人，自己从来不吸毒。</p>
+
+            <p>这件事给我的触动特别大。</p>
+
+            <p>如果连创造这些技术的人，都觉得这些东西不好，都不想让自己的孩子用，那我们这些普通人，到底在干嘛呢？</p>
+
+            <p>我们每天捧着手机，刷着算法推送给我们的内容，以为自己在学习，在进步，在跟世界连接。其实我们只是产品而已。</p>
+
+            <p>我们的注意力，我们的时间，我们的数据，被打包卖给广告商，变成他们财报上的数字。</p>
+
+            <p>我们以为自己在使用技术，其实是技术在使用我们。</p>
+
+            <p>其实吧，我觉得最可怕的不是技术本身。</p>
+
+            <p>最可怕的是，我们已经慢慢习惯了这一切。</p>
+
+            <p>我们习惯了手机24小时不离手，习惯了吃饭先拍照，习惯了用表情包代替说话，习惯了用点赞数衡量一件事情的价值。</p>
+
+            <p>我们习惯了算法给我们推荐的内容，习惯了大数据给我们贴的标签，习惯了科技巨头制定的规则。</p>
+
+            <p>我们甚至开始觉得，这一切都是理所当然的。</p>
+
+            <p>这才是最可怕的地方。</p>
+
+            <p>就像温水煮青蛙一样。一开始水只是有点温，你觉得挺舒服的。慢慢的，水越来越热，等你觉得不对劲的时候，已经跳不出去了。</p>
+
+            <p>我现在经常会想，我们这一代人，到底是科技的受益者，还是科技的第一代受害者？</p>
+
+            <p>我们是人类历史上，第一批从小就生活在屏幕前的人。我们是第一批，从来没有体验过没有互联网的生活的人。</p>
+
+            <p>我们不知道，这对我们的大脑，对我们的心理，对我们的社会，到底会产生什么样的长期影响。</p>
+
+            <p>我们就像一群小白鼠，在一场巨大的社会实验里，自己当实验品，自己也当观察者。</p>
+
+            <p>但我也不是完全的悲观主义者。</p>
+
+            <p>我还是相信技术的力量，我还是相信人类的创造力。只是我现在觉得，技术不是万能的，技术本身也没有价值观。</p>
+
+            <p>技术是一把刀，你可以用它来切菜，也可以用它来杀人。</p>
+
+            <p>关键不在刀，在用刀的人。</p>
+
+            <p>以前我们觉得，只要技术进步了，一切自然都会变好。现在我们知道了，不是这样的。技术只是工具，怎么用这个工具，才是最重要的。</p>
+
+            <p>我们需要的，不是更快的网速，不是更聪明的AI，不是更精准的算法。</p>
+
+            <p>我们需要的，是对技术的反思，是对人性的敬畏，是对未来的责任感。</p>
+
+            <p>我们需要想清楚，我们到底想要一个什么样的未来。</p>
+
+            <p>我们是想要一个越来越高效，越来越精准，越来越完美，但也越来越冰冷，越来越没有人情味，越来越没有自由的未来？</p>
+
+            <p>还是想要一个不那么完美，不那么高效，甚至有点混乱，但每个人都能作为一个真实的人活着的未来？</p>
+
+            <p>这个问题，技术给不了答案。</p>
+
+            <p>答案在我们每个人心里。</p>
+
+            <p>最后想跟大家说几句。</p>
+
+            <p>不用神化技术，也不用恐惧技术。</p>
+
+            <p>技术就是技术，它只是工具而已。</p>
+
+            <p>真正重要的，永远是使用工具的人。是你，是我，是我们每一个普通人。</p>
+
+            <p>不要让算法定义你是谁，不要让手机控制你的生活，不要让科技巨头决定你看什么，想什么，相信什么。</p>
+
+            <p>把手机放下，走到窗边，看看外面的世界。</p>
+
+            <p>去见真实的人，去做真实的事，去感受真实的生活。</p>
+
+            <p>这些东西，才是真正重要的。</p>
+
+            <p>这些东西，是任何技术都取代不了的。</p>
+        </article>
+
+        <div class="article-author">
+            <div class="article-author-name">听风</div>
+            <div class="article-author-bio">自由写作者，独立观察者。在喧嚣的时代保持清醒。</div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p class="footer-text">© 2026 文明切片 · 听风</p>
+        </div>
+    </footer>
+
+    <script>
+        window.addEventListener('scroll', function() {
+            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            document.getElementById("progressBar").style.width = scrolled + "%";
+        });
+    </script>
+</body>
+</html>

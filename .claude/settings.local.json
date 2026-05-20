@@ -1,0 +1,18 @@
+{
+  "permissions": {
+    "allow": [
+      "PowerShell(Out-Null *)",
+      "Bash(git pull *)",
+      "Bash(git add *)",
+      "Bash(git commit -m '添加每日市场资讯栏目，发布2026-05-18投资日报 *)",
+      "Bash(git push *)",
+      "Bash(git commit *)",
+      "Bash(dir C:\\\\Users\\\\gangg\\\\Desktop\\\\wendang\\\\网站文件 *)",
+      "PowerShell(Out-File *)",
+      "Bash(Test-Path style.css)",
+      "Bash(Test-Path script.js)",
+      "PowerShell(Start-Process \"index.html\")",
+      "PowerShell(Get-Content *)"
+    ]
+  }
+}

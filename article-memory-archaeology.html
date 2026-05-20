@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>记忆的考古学 | 文明切片</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&family=Noto+Sans+SC:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--accent), var(--accent-light));
+            z-index: 1000;
+            transition: width 0.1s ease;
+        }
+
+        .article-hero {
+            padding: 140px 32px 60px;
+            text-align: center;
+            position: relative;
+        }
+
+        .article-hero::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--accent), transparent);
+        }
+
+        .article-category {
+            display: inline-block;
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 24px;
+            padding: 6px 14px;
+            background: rgba(184, 134, 11, 0.08);
+            border-radius: 20px;
+        }
+
+        .article-title {
+            font-family: var(--font-serif);
+            font-size: 40px;
+            font-weight: 700;
+            line-height: 1.3;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, var(--text-primary) 0%, var(--accent) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .article-meta {
+            font-size: 14px;
+            color: var(--text-muted);
+            display: flex;
+            justify-content: center;
+            gap: 24px;
+        }
+
+        .article-content {
+            max-width: 720px;
+            margin: 0 auto;
+            padding: 60px 32px 80px;
+        }
+
+        .article-body {
+            font-family: var(--font-sans);
+            font-size: 17px;
+            line-height: 2;
+            color: var(--text-primary);
+        }
+
+        .article-body p {
+            margin-bottom: 24px;
+        }
+
+        .article-author {
+            margin-top: 80px;
+            padding-top: 40px;
+            border-top: 1px solid var(--border);
+            text-align: center;
+        }
+
+        .article-author-name {
+            font-family: var(--font-serif);
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 8px;
+        }
+
+        .article-author-bio {
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+
+        @media (max-width: 768px) {
+            .article-title {
+                font-size: 28px;
+            }
+
+            .article-content {
+                padding: 40px 24px 60px;
+            }
+
+            .article-body {
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="progress-bar" id="progressBar"></div>
+
+    <nav class="nav">
+        <div class="nav-container">
+            <a href="index.html" class="logo">文明切片</a>
+            <div class="nav-links">
+                <a href="index.html#articles" class="nav-link">文章</a>
+                <a href="index.html#market" class="nav-link">市场资讯</a>
+                <a href="index.html#news" class="nav-link">资讯</a>
+                <a href="ai-hub.html" class="nav-link">AI 启动台</a>
+                <a href="about.html" class="nav-link">关于</a>
+            </div>
+        </div>
+    </nav>
+
+    <header class="article-hero">
+        <div class="article-category">个人随笔</div>
+        <h1 class="article-title">记忆的考古学</h1>
+        <div class="article-meta">
+            <span>听风</span>
+            <span>2026.04.15</span>
+            <span>约 2500 字</span>
+        </div>
+    </header>
+
+    <main class="article-content">
+        <article class="article-body">
+            <p>前阵子整理旧东西，翻出了我第一部手机。</p>
+
+            <p>那是一个诺基亚的直板机，按键已经磨得发亮，电池早就鼓包了，肯定是开不了机的。但我还是鬼使神差地插上电，按了开机键。</p>
+
+            <p>当然，什么反应都没有。</p>
+
+            <p>但就在我按下开机键的那一瞬间，好多记忆突然就涌了上来。</p>
+
+            <p>我想起当年用这个手机跟喜欢的人发短信，一条删了又写写了又删，最后鼓起勇气发出去，然后把手机攥在手里等回复，心脏跳得飞快。</p>
+
+            <p>我想起大学宿舍里，熄灯之后，大家躲在被子里用手机上网，屏幕的光映在脸上，一个个都像鬼一样。</p>
+
+            <p>我想起第一次用手机拍照片，像素特别低，拍出来模模糊糊的，但还是宝贝得不行，存了又存。</p>
+
+            <p>这些记忆，我以为我早就忘了。</p>
+
+            <p>但一个旧手机，一个按键的触感，就把它们全都召回来了。</p>
+
+            <p>就像考古一样，你挖开一层土，发现了一个旧物件，然后围绕着这个物件的整个时代，整个生活，都慢慢浮现出来。</p>
+
+            <p>我把这个叫做，记忆的考古学。</p>
+
+            <p>我们这代人，其实挺幸运的。</p>
+
+            <p>我们经历了人类历史上变化最快的几十年。我们见过没有互联网的时代，见过拨号上网的时代，见过功能机的时代，见过智能手机的时代，见过现在的AI时代。</p>
+
+            <p>我们是横跨了两个世界的一代人。</p>
+
+            <p>但我们也是挺不幸的。</p>
+
+            <p>因为我们经历的变化太快了，快到我们还没来得及好好告别，旧的世界就已经消失了。</p>
+
+            <p>那些我们曾经以为会一辈子陪着我们的东西，那些我们曾经以为永远不会改变的生活，悄无声息地就没了。</p>
+
+            <p>很多时候你甚至都意识不到，直到某一天，你突然看到一个旧物件，听到一首老歌，闻到一种熟悉的味道，记忆才突然涌上来。</p>
+
+            <p>然后你才恍然大悟，哦，原来已经过去这么久了。</p>
+
+            <p>原来那些我以为刻骨铭心的日子，不知不觉，就已经变成了回忆。</p>
+
+            <p>原来我，已经走了这么远了。</p>
+
+            <p>我现在特别喜欢收集一些旧东西。</p>
+
+            <p>不是什么值钱的古董，就是一些普通人生活里的普通物件。</p>
+
+            <p>高中时候的日记本，里面写满了现在看起来特别幼稚的心事。大学时候的饭卡，上面的照片还是我十七八岁的样子。第一部MP3，里面存的歌现在听来土得掉渣，但当年可是我的宝贝。还有一沓火车票，记录着那些年我去过的地方，见过的人。</p>
+
+            <p>我女朋友经常说我，这些破烂留着干嘛，占地方。</p>
+
+            <p>我每次都说，万一哪天有用呢。</p>
+
+            <p>其实我也知道，大概率是永远不会用了。日记本不会再翻开，MP3不会再听歌，饭卡不会再刷，火车票更不会再用。</p>
+
+            <p>但我就是舍不得扔。</p>
+
+            <p>因为这些东西，不是东西啊。</p>
+
+            <p>它们是时间的化石。</p>
+
+            <p>它们证明了那些日子真的存在过，证明了我真的那样活过。</p>
+
+            <p>如果连这些东西都没有了，那些日子，是不是就像从来没有发生过一样？</p>
+
+            <p>前阵子跟一个朋友聊天，他说现在的小孩，可能永远不会懂我们当年的那种快乐了。</p>
+
+            <p>他们不会懂，下载一首4M的MP3要等半小时是什么感觉。不会懂，发短信要算着字数，70字一条，多一个字就要算两条。不会懂，存了好久的零花钱买一张CD，然后反复听，听到歌词都能背下来是什么感觉。</p>
+
+            <p>他们生下来就是千兆宽带，就是无限流量，就是想听什么歌一搜就有。</p>
+
+            <p>他们拥有的比我们多得多，但他们永远不会有我们当年的那种快乐。</p>
+
+            <p>那种来之不易的快乐，那种小心翼翼的快乐，那种等待的快乐。</p>
+
+            <p>现在什么都太快了，太容易了。</p>
+
+            <p>太容易得到的东西，也就不容易珍惜了。</p>
+
+            <p>我们以为技术让我们拥有了更多，但其实，我们也失去了很多。</p>
+
+            <p>那些慢的，笨的，费劲的，但是真实的东西。</p>
+
+            <p>其实吧，我觉得记忆是一个特别神奇的东西。</p>
+
+            <p>你以为你忘了，但它其实一直都在。它藏在某个物件的纹路里，藏在某首歌的旋律里，藏在某种食物的味道里，藏在某个似曾相识的场景里。</p>
+
+            <p>说不定哪天，你就突然撞见了。</p>
+
+            <p>然后一切都回来了。</p>
+
+            <p>就像昨天才发生一样。</p>
+
+            <p>我现在越来越觉得，人这一辈子，其实就是由这些记忆组成的。</p>
+
+            <p>你住过的房子，你用过的东西，你走过的路，你见过的人，你做过的事，你爱过的人，你犯过的错，你流过的泪。</p>
+
+            <p>这些东西加在一起，就是你。</p>
+
+            <p>它们不是你的负担，它们是你存在过的证据。</p>
+
+            <p>那天晚上，我把那个旧诺基亚擦干净，重新放回了箱子里。</p>
+
+            <p>我知道它永远也开不了机了。</p>
+
+            <p>但没关系。</p>
+
+            <p>那些它帮我记住的东西，永远都在。</p>
+
+            <p>以后有机会，我要给我的孩子看。</p>
+
+            <p>我要告诉他，你爸爸年轻的时候，就是用这么一个破手机，跟你奶奶发短信，跟你妈妈谈恋爱，跟兄弟们吹牛逼。</p>
+
+            <p>那时候没有AI，没有短视频，没有元宇宙。</p>
+
+            <p>但我们也有我们的快乐。</p>
+
+            <p>我们也有我们的时代。</p>
+        </article>
+
+        <div class="article-author">
+            <div class="article-author-name">听风</div>
+            <div class="article-author-bio">自由写作者，独立观察者。在喧嚣的时代保持清醒。</div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p class="footer-text">© 2026 文明切片 · 听风</p>
+        </div>
+    </footer>
+
+    <script>
+        window.addEventListener('scroll', function() {
+            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            document.getElementById("progressBar").style.width = scrolled + "%";
+        });
+    </script>
+</body>
+</html>
