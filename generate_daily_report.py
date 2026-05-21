@@ -86,7 +86,7 @@ def document_html(docx_path: Path, date: str, image_paths: list[str]) -> str:
             text = text_of(paragraph)
             if not text:
                 continue
-            style_name = (paragraph.style.name or "").lower()
+            style_name = (paragraph.style.name if paragraph.style and paragraph.style.name else "").lower()
             if "heading 1" in style_name or text.startswith(("一、", "二、", "三、", "四、", "五、", "六、")):
                 blocks.append(f'<h2 class="report-h2">{text}</h2>')
             elif "heading 2" in style_name or re.match(r"^\d+[.、]", text):
