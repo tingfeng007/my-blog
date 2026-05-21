@@ -4,6 +4,11 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="文明切片，听风的个人写作与观察网站，记录技术、文明、市场与日常思考。">
+  <meta property="og:title" content="文明切片 | 听风">
+  <meta property="og:description" content="听风的独立写作与观察网站，记录技术、文明、市场与日常思考。">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="assets/site/og-default.jpg">
+  <meta name="twitter:card" content="summary_large_image">
   <title>文明切片 | 听风</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -15,7 +20,12 @@
   <nav class="nav" aria-label="主导航">
     <div class="nav-container">
       <a href="index.html" class="logo">文明切片</a>
-      <div class="nav-links">
+      <button class="nav-toggle" type="button" aria-label="打开导航" aria-expanded="false" aria-controls="primary-navigation">
+        <em>菜单</em>
+        <span></span>
+        <span></span>
+      </button>
+      <div class="nav-links" id="primary-navigation">
         <a href="#essays" class="nav-link">文章</a>
         <a href="#market" class="nav-link">市场日报</a>
         <a href="#signals" class="nav-link">资讯切片</a>
@@ -36,17 +46,10 @@
           <a class="btn btn-ghost" href="ai-hub.html">进入 AI 启动台</a>
         </div>
       </div>
-      <aside class="editor-card reveal-on-scroll" aria-label="编辑手记">
-        <div class="editor-card-top">
-          <span>ISSUE 2026</span>
-          <span>PERSONAL JOURNAL</span>
-        </div>
-        <p>写作不是结论的展览，而是把混沌慢慢磨成可以被讨论的形状。</p>
-        <div class="editor-signature">
-          <span>听风</span>
-          <small>自由写作者 / 独立观察者</small>
-        </div>
-      </aside>
+      <figure class="hero-art reveal-on-scroll">
+        <img src="assets/site/home-hero.jpg" alt="文明切片主视觉">
+        <figcaption>写作、技术、市场与时间的切片</figcaption>
+      </figure>
     </div>
   </header>
 
@@ -133,8 +136,11 @@
           <div class="section-kicker">市场日报</div>
           <h2>把数字背后的情绪读出来</h2>
           <p>每天追踪资金、产业与政策脉络，不做噪音搬运，只保留值得继续想的线索。</p>
+          <img class="market-cover" src="assets/site/market-cover.jpg" alt="市场日报栏目封面">
+          <a class="text-link" href="market.html">查看全部日报</a>
         </div>
         <div class="market-feed">
+          <!-- MARKET_CARDS_START -->
           <article class="market-card reveal-on-scroll">
             <div class="market-date">2026.05.20 <span>最新</span></div>
             <h3>每日投资市场日报</h3>
@@ -162,6 +168,7 @@
               <a href="market-daily-2026-05-18.html">阅读全文</a>
             </div>
           </article>
+          <!-- MARKET_CARDS_END -->
         </div>
       </div>
     </section>

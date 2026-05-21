@@ -4,6 +4,11 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="每日投资市场日报，2026 年 5 月 20 日，在线阅读版。">
+  <meta property="og:title" content="每日投资市场日报 | 2026-05-20">
+  <meta property="og:description" content="科创 50 领涨，半导体获主力资金净流入，数据要素政策和外围美债压力同场出现。">
+  <meta property="og:type" content="article">
+  <meta property="og:image" content="assets/site/market-cover.jpg">
+  <meta name="twitter:card" content="summary_large_image">
   <title>每日投资市场日报 | 2026-05-20</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -15,9 +20,14 @@
   <nav class="nav" aria-label="主导航">
     <div class="nav-container">
       <a href="index.html" class="logo">文明切片</a>
-      <div class="nav-links">
+      <button class="nav-toggle" type="button" aria-label="打开导航" aria-expanded="false" aria-controls="primary-navigation">
+        <em>菜单</em>
+        <span></span>
+        <span></span>
+      </button>
+      <div class="nav-links" id="primary-navigation">
         <a href="index.html#essays" class="nav-link">文章</a>
-        <a href="index.html#market" class="nav-link">市场日报</a>
+        <a href="market.html" class="nav-link">市场日报</a>
         <a href="index.html#signals" class="nav-link">资讯切片</a>
         <a href="ai-hub.html" class="nav-link">AI 启动台</a>
         <a href="about.html" class="nav-link">关于</a>
@@ -27,8 +37,9 @@
 
   <main class="report-shell">
     <div class="report-toolbar">
-      <a href="index.html#market">返回市场日报</a>
+      <a href="market.html">返回日报归档</a>
       <span>在线原文阅读</span>
+      <button type="button" onclick="shareContent('每日投资市场日报 - 2026.05.20', 'market-daily-2026-05-20.html')">分享</button>
       <a href="downloads/market-daily-2026-05-20.docx">下载 Word 原文</a>
     </div>
     <article class="report-document">
